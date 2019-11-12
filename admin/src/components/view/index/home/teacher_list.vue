@@ -13,7 +13,7 @@
                 </el-form-item>
                 <el-form-item class="box-item right">
                   <el-button size="mini" type="primary" @click="search">查询</el-button>
-                  <el-button size="mini" type="primary">新增教师</el-button>
+                  <el-button size="mini" type="primary" @click=" addStudentDialog = true">新增教师</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -67,6 +67,21 @@
         </div>
       </el-col>
     </el-row>
+    <el-dialog title="新增老师" :visible.sync="addStudentDialog" v-if="addStudentDialog" width="400px"
+               :before-close="handleClose">
+      <el-form :model="addInfo" ref="addInfo" :rules="rules">
+        <el-form-item label="老师姓名" prop="name" label-width="100px">
+          <el-input v-model="addInfo.name" size="mini" placeholder="请输入老师姓名"></el-input>
+        </el-form-item>
+        <el-form-item label="老师手机号" prop="mobile" label-width="100px">
+          <el-input v-model="addInfo.mobile" size="mini" placeholder="请输入老师手机号"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="addStudentDialog = false" size="mini">取 消</el-button>
+        <el-button type="primary" @click="submit" size="mini">确 定</el-button>
+      </div>
+    </el-dialog>
   </el-main>
 </template>
 <script type="text/ecmascript-6">
@@ -74,24 +89,81 @@
   import {util} from '../../../../common/util';
   export default{
     data(){
+      let validMobile = (rule, value, callback) => {
+        if (value && value.length != 11) {
+          callback();
+        } else {
+          let reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}$|18[0-9]{9}$|19[0-9]{9}$/;
+          if (!reg.test(value)) {
+            callback(new Error('请输入正确的手机号'));
+          } else {
+            callback();
+          }
+        }
+      };
       return {
         total: 0,
         listQuery: {
           page: 1
         },
+        addInfo: {
+          mobile: '',
+          name: ''
+        },
         searchData: '',
-        mainData: []
+        mainData: [],
+        addStudentDialog: false,
+        rules: {
+          name: [{
+            required: true,
+            message: '姓名不能为空',
+            trigger: 'blur'
+          }],
+          mobile: [{
+            required: true,
+            validator: validMobile,
+            trigger: 'blur'
+          }]
+        },
       }
     },
     methods: {
+      submit() {
+        this.$refs['addInfo'].validate(valid => {
+          if (valid) {
+            util.$ajax({
+              url: '/api/admin/teacher/addTeacher',
+              data: {
+                mobile: this.addInfo.mobile,
+                name: this.addInfo.name,
+                time: util.forMatterMinute(new Date())
+              }
+            }, res => {
+              util.$success('添加成功!');
+              this.handleClose();
+              this.listQuery.page = 1;
+              this.getList();
+            });
+          } else {
+            return false
+          }
+        });
+      },
+      handleClose() {
+        this.addInfo = {
+          mobile: '',
+          name: ''
+        };
+        this.addStudentDialog = false;
+      },
       /**
        * 搜索课程
        */
       search() {
         this.listQuery.page = 1;
-        this.getClassList(1);
+        this.getList(1);
       },
-      getClassList(_num) {
+      getList(_num) {
         util.$ajax({
           url: '/api/admin/teacher/getAllTeacher',
           data: {
@@ -113,12 +185,12 @@
       },
       handleCurrentChange(_val) {
         this.listQuery.page = _val;
-        this.getClassList();
+        this.getList();
       },
     },
 
     mounted(){
-      this.getClassList();
+      this.getList();
     },
     components: {
       navBar

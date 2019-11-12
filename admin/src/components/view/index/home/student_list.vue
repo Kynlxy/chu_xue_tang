@@ -151,7 +151,7 @@
                 util.$success('添加成功!');
                 this.handleClose();
                 this.listQuery.page = 1;
-                this.getClassList();
+                this.getList();
             });
           } else {
             return false
@@ -163,9 +163,9 @@
        */
       search() {
         this.listQuery.page = 1;
-        this.getClassList(1);
+        this.getList(1);
       },
-      getClassList(_num) {
+      getList(_num) {
         util.$ajax({
           url: '/api/admin/student/getAllStudent',
           data: {
@@ -187,12 +187,12 @@
       },
       handleCurrentChange(_val) {
         this.listQuery.page = _val;
-        this.getClassList();
+        this.getList();
       },
     },
 
     mounted(){
-      this.getClassList();
+      this.getList();
     },
     components: {
       navBar
