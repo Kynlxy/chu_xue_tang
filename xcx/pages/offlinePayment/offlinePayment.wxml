@@ -1,0 +1,60 @@
+<view class="main-warp">
+    <view class="common-line-wrap">
+        <view class="common-line-div">
+            <view class="left">名称</view>
+            <view class="right">杭州思言信息技术有限公司</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">纳税人识别号</view>
+            <view class="right">91330108557908921L</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">公司地址</view>
+            <view class="right">杭州市西湖区西园八路2号H座2单元601室</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">公司电话</view>
+            <view class="right">15068842723</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">开户行</view>
+            <view class="right">中国农业银行杭州文三路支行</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">账号</view>
+            <view class="right">19000401040010738</view>
+        </view>
+    </view>
+    <view class="bg-div"></view>
+    <!--<view class="money-div">-->
+        <!--<view class="title-p">-->
+            <!--转账金额-->
+        <!--</view>-->
+        <!--<view class="money-center">-->
+            <!--<image src="../../images/yuan.png"></image>-->
+            <!--<input type="digit" placeholder="请输入金额"/>-->
+        <!--</view>-->
+    <!--</view>-->
+    <!--<view class="bg-div"></view>-->
+    <view class="take-photo-div-warp">
+        <view class="top-green-font">
+            <text class="left">上传转账凭证</text>
+            <text class="right">{{interim.length  || 0 }}/8</text>
+        </view>
+        <view class="common-img-line-div-warp">
+            <view class="common-line-img-div" wx:for="{{interim}}" wx:key="{{interim}}"  wx:for-index="index">
+                <image class="bg-img" src="{{item}}" alt=""/>
+                <image class="delete-img" src="../../images/deleteImg.png" alt="" data-index="{{index}}" bindtap="deleteImg"/>
+            </view>
+            <view class="common-line-img-div" bindtap="takePhoto">
+                <image class="bg-img" src="../../images/addImg.png" alt=""/>
+            </view>
+        </view>
+    </view>
+    <view class="fixed-btn-wrap">
+        <view class="fixed-btn" bindtap="submit">
+            提交
+        </view>
+    </view>
+
+</view>

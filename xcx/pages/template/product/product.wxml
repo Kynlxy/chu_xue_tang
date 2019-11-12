@@ -1,0 +1,42 @@
+<template name="product">
+    <view class="recommended-products-line" wx:key="{{mainData}}" wx:for="{{mainData}}">
+        <navigator hover-class="none" open-type="navigate" url="/pages/classDetail/classDetail?class_id={{item.class_id}}">
+            <view class="project-main-div">
+                <image src="{{item.fid}}" alt=""></image>
+                <view class="detail-font">
+                    {{item.class_name}}
+                </view>
+            </view>
+            <view class="buy-div">
+                <view class="time-price text-right">
+                    {{item.class_name || "暂无分类"}}
+                    <view class="classify  ">
+                        课程名称
+                    </view>
+
+                </view>
+                <view class="time-price text-right padding-left">{{item.create_time}}
+                    <view class="classify">
+                        创建时间
+                    </view>
+                </view>
+                <view class="place text-right padding-left">{{item.teacher_name}}
+                    <view class="classify">
+                        授课教师
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{ item.isStart  &&  !item.end && item.timeShow && item.time > 0}}">
+                <view class="last-buy-div">
+                    立即竞拍
+                </view>
+            </view>
+            <view wx:else>
+                <view class="last-buy-detail">
+                   查看详情
+                </view>
+            </view>
+
+        </navigator>
+    </view>
+</template>

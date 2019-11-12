@@ -1,0 +1,107 @@
+page{
+    background-color: #faf5f5;
+}
+.first-total-bar {
+    position: relative;
+    width: 100%;
+    height: 150rpx;
+    background: #379949;
+}
+.first-total-bar .search-btn{
+    position: absolute;
+    right: 4%;
+    top: 54rpx;
+    color: #fff;
+}
+.input-warp-div{
+    position:absolute;
+    width:78%;
+    top:35rpx;
+    left:4%;
+}
+.input-warp-div input {
+    background:#ffffff;
+    text-align:left;
+    color:#666666;
+    height:70rpx;
+    border-radius:40rpx;
+    font-size:26rpx;
+    width:90%;
+    padding-left:10%;
+
+}
+.input-warp-div image{
+    position:absolute;
+    width:28rpx;
+    height:28rpx;
+    top:20rpx;
+    left:4%;
+}
+.recommended-products-line{
+    margin-top: 20rpx;
+    width: 92%;
+    padding: 5rpx 4% 30rpx 4%;
+    background: #ffffff;
+}
+.recommended-products-line:first-child{
+    margin-top: 0;
+}
+.title-font-p{
+    font-size: 35rpx;
+    color: #333;
+}
+.title-font-p text{
+    font-size: 24rpx;
+    color: #cccccc;
+}
+.recommended-products-warp .project-main-div{
+    position: relative;
+    width: 100%;
+    height: 360rpx;
+    margin-top: 30rpx;
+}
+.project-main-div image{
+    width: 100%;
+    height: 100%;
+}
+.project-main-div .time-view-div{
+    position: absolute;
+    padding: 20rpx 40rpx 20rpx 20rpx;
+    top: 20rpx;
+    background: rgba(8, 172, 8, 0.6);
+    font-size: 30rpx;
+    color: #ffffff;
+    border-radius:0 50rpx 50rpx 0;
+}
+.project-main-div .detail-font{
+    width: 92%;
+    padding: 0 4%;
+    position: absolute;
+    bottom: 20rpx;
+    font-size: 30rpx;
+    color: #ffffff;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-div-type-warp {
+    background: #ffffff;
+    width: 88%;
+    padding: 20rpx 6%;
+    display: flex;
+    border-bottom: 1px solid #f2f2f2;
+}
+.product-div-type-line{
+    flex: 1;
+}
+.product-div-type-line image{
+    margin-bottom: 4rpx;
+    width: 15rpx;
+    height: 10rpx;
+}
+.active-green{
+    color: #379949;
+}

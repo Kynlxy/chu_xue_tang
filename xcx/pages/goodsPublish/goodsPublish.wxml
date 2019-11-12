@@ -1,0 +1,14 @@
+<import src="../template/product/product.wxml"/>
+<import src="../template/noInfo/noInfo.wxml"/>
+
+<view class="main-warp">
+    <view class="recommended-products-warp">
+        <template is="product" data="{{mainData: mainData}}" wx:if="{{mainData.length > 0}}"/>
+        <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+
+    </view>
+    <view class="publish-warp" bindtap="toPublish">
+            添加发布
+    </view>
+</view>
+

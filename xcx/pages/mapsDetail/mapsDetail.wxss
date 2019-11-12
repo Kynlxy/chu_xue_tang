@@ -1,0 +1,69 @@
+#map{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 111;
+}
+.go-place-div {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 11111;
+}
+.bg-div {
+    padding: 37rpx 4% 0 4%;
+    width: 92%;
+    height: 137rpx;
+    background:rgba(255,255,255,1);
+}
+.no-bg-div {
+    width: 100%;
+    height: 70rpx;
+    background: none;
+}
+.big-tip-p {
+    font-size:36rpx;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+}
+.small-p{
+    font-size:24rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    margin-top: 21rpx;
+}
+ .img-div{
+     line-height: 130rpx;
+     text-align: center;
+     font-size: 28rpx;
+     color: #ffffff;
+    background: #0ba20d;
+     cursor: pointer;
+    width: 130rpx;
+    height: 130rpx;
+    position: absolute;
+    right: 8%;
+    top:  5rpx;
+     border-radius: 50%;
+}
+/*.tips-font{*/
+    /*padding: 20rpx 10% 0 10%;*/
+    /*font-size: 28rpx;*/
+    /*line-height:40rpx;*/
+/*}*/
+/*.goPlace {*/
+    /*margin-top: 20rpx ;*/
+    /*font-size: 28rpx;*/
+    /*line-height:40rpx;*/
+/*}*/
+/*image{*/
+    /*margin-right: 10rpx;*/
+    /*width: 30rpx;*/
+    /*height: 30rpx;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.goPlace image {*/
+    /*margin-right: 20rpx;*/
+/*}*/

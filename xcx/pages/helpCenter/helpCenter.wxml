@@ -1,0 +1,11 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+<view class="main-warp" wx:if="{{mainData.length > 0}}">
+    <view class="common-line-div" wx:key="{{mainData}}" wx:for="{{mainData}}">
+        <navigator hover-class="none" open-type="navigate" url="/pages/informationDetails/informationDetails?nid={{item.nid}}">
+            <image class="question-png" src="../../images/question.png"></image>
+            <text>{{item.title}}</text>
+            <image class="path-png" src="../../images/path.png"></image>
+        </navigator>
+    </view>
+</view>
+<template is="noInfo" wx:if="{{mainData.length == 0}}"/>

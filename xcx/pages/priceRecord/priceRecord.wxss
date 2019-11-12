@@ -1,0 +1,42 @@
+page{
+    background-color: #ffffff;
+}
+.main-title-warp{
+    display: flex;
+    width: 100%;
+    padding: 40rpx 0;
+    color: black;
+    text-align: center;
+    border-bottom: 1px dashed #cccccc;
+}
+.main-title-warp .item-title-div{
+    flex: 1;
+}
+.common-item-detail{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    padding: 30rpx 0;
+    color: #adadad;
+    border-bottom: 1px dashed #cccccc;
+}
+.main-title-warp + .common-item-detail{
+    color: #379949;
+}
+.main-title-warp + .common-item-detail .common-item-detail-div text{
+    background: #379949;
+    color: #ffffff;
+}
+.main-title-warp + .common-item-detail {
+    color: #379949;
+}
+.common-item-detail .common-item-detail-div{
+    flex: 1;
+    font-size: 23rpx;
+}
+.common-item-detail .common-item-detail-div text{
+    background: #adadad;
+    color: #ffffff;
+    padding: 5rpx 10rpx;
+    border-radius: 5rpx;
+}

@@ -1,0 +1,22 @@
+.common-line-div{
+    position: relative;
+    padding: 40rpx 4%;
+    border-bottom: 1px solid #f2f2f2;
+}
+.question-png{
+    position: absolute;
+    width: 28rpx;
+    height: 28rpx;
+    left: 4%;
+    top:44rpx;
+}
+.common-line-div text{
+    padding-left: 40rpx;
+}
+.path-png{
+    position: absolute;
+    width: 15rpx;
+    height: 25rpx;
+    right: 4%;
+    top:40rpx;
+}

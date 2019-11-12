@@ -1,0 +1,107 @@
+page{
+    background-color: #faf5f5;
+}
+.select-bar-div {
+    padding: 0 0 25rpx 0;
+    background: #ffffff;
+    display: flex;
+}
+.item-div {
+    flex: 1;
+    text-align: center;
+    font-size:30rpx;
+    font-family:PingFang-SC-Bold;
+    font-weight:bold;
+    color:rgba(153,153,153,1);
+}
+.active text{
+    color:rgba(51,51,51,1);
+    border-bottom: 2px solid rgba(55, 153, 73, 1);
+    padding-bottom: 10rpx;
+}
+.product-list {
+    overflow: hidden;
+    border-radius: 12rpx;
+    width: 84%;
+    padding: 22rpx 4%;
+    margin: 20rpx auto 0 auto;
+    background: #ffffff;
+}
+.top-div {
+    overflow: hidden;
+    margin-bottom: 20rpx;
+}
+.top-div .left {
+    font-size:32rpx;
+    font-family:PingFang-SC-Regular;
+    font-weight:400;
+    color:rgba(55,153,73,1);
+}
+.top-div .right {
+    font-size:24rpx;
+    font-family:PingFang-SC-Regular;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+}
+.center-div {
+    position: relative;
+    width: 100%;
+}
+.left-banner-img {
+    position: absolute;
+    width: 150rpx;
+    height: 150rpx;
+}
+.left-banner-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.right-content-p {
+    min-height:117rpx;
+    padding: 18rpx 20rpx;
+    margin-left: 150rpx;
+    background: rgba(250, 251, 255, 1);
+}
+.name-p {
+    font-size:26rpx;
+    font-family:PingFang-SC-Regular;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40rpx;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.money-p {
+    margin-top: 10rpx;
+    font-size:22rpx;
+    font-family:PingFang-SC-Regular;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.money-p text {
+    font-size:30rpx;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+}
+.product-list .btn{
+    margin-top: 35rpx;
+    width: 130rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    background: rgba(55, 153, 73, 1);
+    color: #ffffff;
+    font-size:22rpx;
+    border-radius:10rpx;
+    float: right;
+}

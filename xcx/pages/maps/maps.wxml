@@ -1,0 +1,23 @@
+<!--pages/maps/maps.wxml-->
+<view class="main-warp">
+    <map id="map" longitude="{{rstLongitude}}" latitude="{{retLatitude}}" scale="14"
+         markers="{{markers}}" bindmarkertap="markertap" circles="{{circles}}" polyline="{{polyline}}"
+         bindtap="returnPlace" show-location>
+        <cover-view class="main-cover-warp" hidden="{{hidden}}">
+            <cover-view class="main-center-div">
+               <cover-view class="main-show"> {{'确定选择: ' + place}}</cover-view>
+                <cover-view class="last-btn-div">
+                    <cover-view class="common-btn" bindtap="cancel">
+                        取消
+                    </cover-view>
+                    <cover-view class="common-btn ok-btn" bindtap="confirm">
+                        确定
+                    </cover-view>
+                </cover-view>
+            </cover-view>
+        </cover-view>
+    </map>
+    <view class="btn-get-place" bindtap="selectPlace">选取地点</view>
+    <view class="tips-font">地区: {{place}}</view>
+    <view class="tips-font" >提示:滑动地图,点击地图会选取地图中间位置。</view>
+</view>

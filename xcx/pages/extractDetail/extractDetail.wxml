@@ -1,0 +1,44 @@
+<view class="main-warp">
+    <view class="detail-list-div">
+        <div class="img-warp-div">
+            <image class="circular circular-one" src="../../images/green-circular.png">
+
+            </image>
+            <image class="line line-one" src="../../images/green-line.png">
+
+            </image>
+            <image class="circular circular-two" src="../../images/black-circular.png">
+
+            </image>
+            <image class="line line-two" src="../../images/black-line.png">
+
+            </image>
+            <image class="circular circular-three" src="../../images/black-circular.png">
+
+            </image>
+            <image class="line line-three" src="../../images/black-line.png">
+
+            </image>
+            <image class="circular circular-four" src="../../images/black-circular.png">
+
+            </image>
+            <view class="absolute-font font-one active-green">发起提现申请</view>
+            <view class="absolute-font font-two">后台审核中</view>
+            <view class="absolute-font font-three">银行处理</view>
+            <view class="absolute-font font-four">到账成功</view>
+        </div>
+    </view>
+    <view class="detail-div">
+        <view class="line-div">
+            <view class="left">提现金额</view>
+            <view class="right">￥{{money || '---'}}</view>
+        </view>
+        <!--<view class="line-div">-->
+        <!--<view class="left">到账银行卡</view>-->
+        <!--<view class="right">农业银行 尾号(8765)</view>-->
+        <!--</view>-->
+    </view>
+    <view class="publish-warp" bindtap="goMy">
+        完成
+    </view>
+</view>

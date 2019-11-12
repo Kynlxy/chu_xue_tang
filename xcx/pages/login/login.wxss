@@ -1,0 +1,134 @@
+page{
+    background: #d2e9da;
+
+}
+.main-warp{
+}
+.top-banner-div{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200rpx;
+    padding-top: 200rpx;
+}
+.yun-img{
+    position: absolute;
+    right: -200rpx;
+    top: 100rpx;
+    width: 300rpx;
+    height: 274rpx;
+    -webkit-animation: rollCircle 6s linear infinite alternate;
+    -o-animation: rollCircle 6s linear infinite alternate;
+    animation: rollCircle 6s linear infinite alternate;
+}
+@keyframes rollCircle { from{ right: -200rpx;
+} to{ right: 0rpx;
+  }
+}
+.logo{
+    display: block;
+    margin: 0 auto;
+    width: 150rpx;
+    height: 150rpx;
+}
+
+
+.center-div{
+    width: 86%;
+    height: 410rpx;
+    padding-top: 40rpx;
+    background: #ffffff;
+    box-shadow:0px 5px 8px 0px #bbdcc1;
+    border-radius: 15rpx;
+    margin: 30rpx auto 0 auto;
+
+}
+.login-btn{
+    width: 350rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #379949;
+    border-radius: 40rpx;
+    text-align: center;
+    color: #ffffff;
+    margin: -40rpx auto 0 auto;
+}
+.title-font{
+    display: block;
+    margin: 0 auto;
+    width: 175rpx;
+    height: 60rpx;
+}
+.common-line-div{
+    position: relative;
+    width: 560rpx;
+    height: 80rpx;
+    margin: 40rpx auto 0 auto;
+}
+.mobile {
+    position: absolute;
+    width: 30rpx;
+    height: 45rpx;
+    top:15rpx;
+}
+.safe{
+    position: absolute;
+    width: 32rpx;
+    height: 40rpx;
+    top:10rpx;
+}
+.input-warp-div{
+    width: 500rpx;
+    margin-left: 50rpx;
+    border-bottom: 2px solid #eaeaea;
+}
+.input-warp-div input{
+    padding: 10rpx;
+}
+.safe-input input {
+    width: 300rpx;
+}
+.get-code{
+    width: 170rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    background: #379949;
+    border-radius: 10rpx;
+    position: absolute;
+    right: 0;
+    top: 5rpx;
+    color: #ffffff;
+    font-size: 24rpx;
+}
+.not-click{
+    background: #5e5e5e;
+}
+.tip-font{
+    margin-top: 40rpx;
+    text-align: center;
+    color: #6d8e79;
+    font-size: 26rpx;
+}
+.has-token{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: #ffffff;
+    z-index: 11;
+}
+.register-agreement{
+    color: #585858;
+    margin-top: 40rpx;
+    font-size: 30rpx;
+    text-align: center;
+}
+.p-name {
+    font-size: 40rpx;
+    color: #149c24;
+    font-weight: bold;
+    text-align: center;
+}

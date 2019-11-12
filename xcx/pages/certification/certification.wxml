@@ -1,0 +1,46 @@
+<view class="main-warp">
+    <view class="top-bank-div">
+        <view class="bank-main-div">
+            <image class="left-header-img" src="{{info.avatar ? info.avatar : '../../images/default-head.png'}}"></image>
+            <image class="bank-bg-div" src="../../images/bank-bg-image.png"></image>
+            <image class="right-true-img" src="../../images/is-true.png" wx:if="{{real_status == 1}}"></image>
+            <image class="right-true-img not-true" src="../../images/not-true.png" wx:if="{{real_status != 1}}"></image>
+
+            <view class="absolute-view-div">
+                <view class="true-name">{{info.true_name || '用户' + info.user_name}}</view>
+                <view class="true-id">{{info.card_id || ''}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="upload-id-card-warp">
+
+        <view class="upload-id-card">
+            <view class="left-view-div">
+                <view class="big-photo-div">资料完善</view>
+                <view class="tip-font">上传身份证完善资料</view>
+            </view>
+            <navigator hover-class="none" open-type="navigate" url="/pages/idDistinguish/idDistinguish"  wx:if="{{real_status != 1}}">
+                <view class="absolute-right-div">
+                    <text class="green">未完善</text>
+                    <image src="../../images/right-green.png"></image>
+                </view>
+            </navigator>
+            <view class="absolute-right-div">
+
+                <text wx:if="{{real_status == 1}}">已完善</text>
+            </view>
+
+        </view>
+        <view class="upload-id-card" bindtap="takePhoto">
+            <view class="left-view-div">
+                <view class="big-photo-div">头像照片</view>
+                <view class="tip-font">上传头像照片</view>
+            </view>
+            <view class="absolute-right-div">
+                <text class="green" wx:if="{{!info.avatar}}">未完善</text>
+                <text class="green" wx:if="{{info.avatar}}">已完善</text>
+                <image src="../../images/right-green.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

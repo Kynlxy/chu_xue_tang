@@ -1,0 +1,17 @@
+<view class="main-warp">
+    <view class="main-center">
+        <view class="common-line-div">
+            <view class="tip-p">联系人</view>
+            <input type="text" placeholder="姓名" value="{{name}}" data-value="name" bindinput="valueInput"/>
+        </view>
+        <view class="common-line-div">
+            <view class="tip-p">电话</view>
+            <input type="number" maxlength="11" placeholder="手机号码" value="{{mobile}}" data-value="mobile" bindinput="valueInput"/>
+        </view>
+        <view class="common-line-div">
+            <view class="tip-p">地址</view>
+            <input type="text" placeholder="请输入收货地址" value="{{address}}" data-value="address" bindinput="valueInput"/>
+        </view>
+    </view>
+    <view class="btn-div" bindtap="submit">确定</view>
+</view>

@@ -1,0 +1,53 @@
+<view class="main-warp">
+    <view class="main-center-div-top">
+        <view class="promise-font">余额总额</view>
+        <view class="money-font">50,000</view>
+    </view>
+    <view class="main-center-choose-type">
+        <view class="choose-type-div">
+            <view class="common-line-div">
+                <text class="text-active">全部</text>
+            </view>
+            <view class="common-line-div">
+                <text>收入</text>
+
+            </view>
+            <view class="common-line-div">
+                <text>支出</text>
+            </view>
+        </view>
+        <view class="common-list-div">
+            <view class="big-bold-font">
+                充值
+            </view>
+            <view class="time-font-div">
+                2019-02-25 16:00:00
+            </view>
+            <view class="position-font">
+                + 50,000
+            </view>
+        </view>
+        <view class="common-list-div">
+            <view class="big-bold-font">
+                提现
+            </view>
+            <view class="time-font-div">
+                2019-02-25 16:00:00
+            </view>
+            <view class="position-font">
+                + 50,000
+            </view>
+        </view>
+        <view class="common-list-div">
+            <view class="big-bold-font">
+                充值
+            </view>
+            <view class="time-font-div">
+                2019-02-25 16:00:00
+            </view>
+            <view class="position-font">
+                + 50,000
+            </view>
+        </view>
+    </view>
+</view>

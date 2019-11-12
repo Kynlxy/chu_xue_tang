@@ -1,0 +1,63 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+<import src="../template/product/product.wxml"/>
+
+<view class="main-warp">
+    <view class="select-bar-div">
+        <view class="{{chooseIndex == 0 ? 'item-div active' : 'item-div'}}" data-index="0" bindtap="chooseType">
+            <text>
+                全部
+            </text>
+
+        </view>
+        <view class="{{chooseIndex == 1 ? 'item-div active' : 'item-div'}}" data-index="1" bindtap="chooseType">
+            <text>
+                待支付
+            </text>
+        </view>
+        <view class="{{chooseIndex == 3 ? 'item-div active' : 'item-div'}}" data-index="3" bindtap="chooseType">
+            <text>
+                已支付
+            </text>
+        </view>
+        <view class="{{chooseIndex == 9 ? 'item-div active' : 'item-div'}}" data-index="9" bindtap="chooseType">
+            <text>
+                已放弃
+            </text>
+        </view>
+
+    </view>
+    <view class="product-wrap">
+        <view class="product-list" wx:for="{{mainData}}" wx:key="{{mainData}}">
+            <view class="top-div">
+                <view class="left">
+                    {{item.pay_status == 1 ? '未支付' :
+                    item.pay_status == 2 ? '已支付' :
+                    item.pay_status == 3 ? '完成' :
+                    '已流标'
+                    }}
+                </view>
+                <view class="right">{{item.add_time}}</view>
+            </view>
+            <view class="center-div">
+                <view class="left-banner-img">
+                    <image src="{{item.img_path}}" alt=""></image>
+                </view>
+                <view class="right-content-p">
+                    <view class="name-p">
+                        {{item.goods_name}}
+                    </view>
+                    <view class="money-p" >
+                        合计：¥
+                        <text >{{item.money}}</text>
+                    </view>
+                </view>
+            </view>
+            <navigator  wx:if="{{item.pay_status == 1 && type == 1}}" hover-class="none" open-type="navigate" url="/pages/confirmationOfOrder/confirmationOfOrder?id={{item.order_id}}">
+                <view class="btn">确认支付</view>
+            </navigator>
+            <view class="btn" wx:if="{{item.pay_status == 3 && type == 1 && item.is_receipt == 2}}" data-item="{{item}}" bindtap="confirmReceipt">确认收货</view>
+
+        </view>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+</view>

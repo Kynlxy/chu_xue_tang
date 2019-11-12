@@ -1,0 +1,36 @@
+<view class="main-warp">
+    <view class="city-div-title">
+        <text class="tips-font">
+            当前位置
+        </text>
+        <view class="detail-font-div">
+            <image src="../../images/place-choose.png"></image>{{place}}
+        </view>
+    </view>
+    <view class="city-choose-center-div">
+        <view class="tips-big-font">
+            城市选择
+        </view>
+        <view class="place-choose-line">
+            <view class="place-common-line-div" data-index="1" bindtap="chooseType">
+                {{provinceId.value || ""}}
+            </view>
+            <view class="place-common-line-div" data-index="2" bindtap="chooseType">
+                {{cityId.value || ""}}
+            </view>
+            <view class="place-common-line-div" data-index="3" bindtap="chooseType">
+                {{regionId.value || ""}}
+            </view>
+            <view class="place-common-line-div" data-index="4" bindtap="chooseType">
+                {{areaId.value || ""}}
+            </view>
+        </view>
+        <view class="detail-city-choose-warp">
+            <view wx:for="{{mark == 1 ? provinceArr : mark == 2 ? cityArr : mark == 3 ? regionArr : areaArr }}" wx:key="{{mark == 1 ? provinceArr : mark == 2 ? cityArr : mark == 3 ? regionArr : areaArr }}" data-detail="{{item}}"
+                  class="{{item.active == 1 ? 'detail-common-line-div green-active' : 'detail-common-line-div '}}" bindtap="choosePlace">
+                {{item.value}}
+                <image wx:if="{{item.active == 1}}" src="../../images/green-ok.png" data-detail="{{item}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

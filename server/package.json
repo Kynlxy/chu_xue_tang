@@ -1,0 +1,25 @@
+{
+    "name": "初学堂后端代码",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "author": "kyn",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+      "body-parser": "^1.18.3",
+      "express": "^4.16.4",
+      "express-mysql-session": "^2.1.0",
+      "express-session": "^1.15.6",
+      "formidable": "^1.2.1",
+      "jsonwebtoken": "^8.4.0",
+      "log4js": "^3.0.6",
+      "multiparty": "^4.2.1",
+      "mysql": "^2.16.0",
+      "multer": "^1.4.2"
+    }
+  }
+  

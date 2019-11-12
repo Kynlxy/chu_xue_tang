@@ -1,0 +1,67 @@
+<view class="main-warp">
+    <view class="common-input-div-warp bottom-input">
+        <view class="common-input-div ">
+            <view class="left-text">
+                银行卡号
+                <text class="red-text">*</text>
+            </view>
+            <input type="number" class="right" placeholder="请输入银行卡号"  value="{{bank_account}}" data-value="bank_account" bindinput="valueInput"/>
+        </view>
+        <view class="common-input-div ">
+            <view class="left-text">
+                分行信息
+                <text class="red-text">*</text>
+            </view>
+            <input type="text" class="right" placeholder="如: xx支行"  value="{{branch}}" data-value="branch" bindinput="valueInput"/>
+        </view>
+        <!--<view class="common-input-div ">-->
+            <!--<view class="left-text">-->
+                <!--银行名称-->
+                <!--<text class="red-text">*</text>-->
+            <!--</view>-->
+            <!--<input type="text" class="right" placeholder="请输入银行名称"  value="{{bank_name}}" data-value="bank_name" bindinput="valueInput"/>-->
+        <!--</view>-->
+        <view class="common-input-div">
+            <view class="left-text">
+                所属银行
+                <text class="red-text">*</text>
+            </view>
+
+            <picker class="right position-right-choose"
+                    bindchange="commonChoose"
+                    value="{{bankArr}}" data-value="bankIndex" range="{{bankArr}}"  range-key="name">
+                {{bankArr[bankIndex].name || ''}}
+                <image class="path-div" src="../../images/path.png"></image>
+            </picker>
+        </view>
+        <view class="common-input-div">
+            <view class="left-text">
+                所属省
+                <text class="red-text">*</text>
+            </view>
+
+            <picker class="right position-right-choose"
+                    bindchange="commonChoose"
+                    value="{{provinceIndex}}" data-value="provinceIndex" range="{{provinceArr}}"  range-key="name">
+                {{provinceArr[provinceIndex].name || ''}}
+                <image class="path-div" src="../../images/path.png"></image>
+            </picker>
+        </view>
+        <view class="common-input-div" >
+            <view class="left-text">
+                所属城市
+                <text class="red-text">*</text>
+            </view>
+
+            <picker class="right position-right-choose"
+                    bindchange="commonChoose"
+                    value="{{cityIndex}}" data-value="cityIndex" range="{{cityArr}}" range-key="name">
+                {{cityArr[cityIndex].name || ''}}
+                <image class="path-div" src="../../images/path.png"></image>
+            </picker>
+        </view>
+    </view>
+    <view class="fixed-last-div">
+        <view class="button-div" bindtap="addBank">绑定银行卡</view>
+    </view>
+</view>

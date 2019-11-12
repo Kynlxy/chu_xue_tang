@@ -1,0 +1,23 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+
+<view class="main-warp">
+    <view class="main-center" wx:if="{{mainData.length > 0}}">
+        <view class="common-line-div" wx:for="{{mainData}}" wx:key="{{mainData}}" data-value="{{item}}" bindtap="chooseAddress">
+            <view class="top-div" data-value="{{item}}">
+                <text class="name-text" data-value="{{item}}">{{item.name}}</text>
+                <text class="mobile-text" data-value="{{item}}">{{item.mobile}}</text>
+            </view>
+            <view class="address-text" data-value="{{item}}">
+                {{item.address}}
+            </view>
+            <view class="btn-delete" data-id="{{item.addr_id}}" catchtap="deleteId">删除</view>
+        </view>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+    <navigator hover-class="none" open-type="navigate"
+               url="/pages/newAddress/newAddress">
+        <view class="add-address">
+            新增地址
+        </view>
+    </navigator>
+</view>

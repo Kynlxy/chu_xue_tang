@@ -1,0 +1,116 @@
+page {
+    background: #fff;
+}
+.main-warp {
+    margin-bottom: 50rpx;
+}
+.common-line-wrap {
+    padding: 44rpx 4% 0 4%;
+    width: 92%;
+}
+.common-line-div {
+    overflow: hidden;
+    margin-bottom: 44rpx;
+}
+.common-line-div .left {
+    font-size:28rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+}
+.common-line-div .right {
+    font-size:28rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+}
+.bg-div {
+    width: 100%;
+    height: 20rpx;
+    background: #faf5f5;
+}
+.money-div {
+    padding: 29rpx 4% 0 4%;
+
+}
+.title-p {
+    font-size:30rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color: rgba(51,51,51,1);
+}
+.money-center {
+    position: relative;
+    margin: 70rpx 0 40rpx 0;
+}
+.money-div image {
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 32rpx;
+    height: 41rpx;
+}
+.money-div input {
+    width: 250rpx;
+    height: 30rpx;
+    margin-left: 55rpx;
+}
+.take-photo-div-warp{
+    margin-top: 20rpx;
+    width: 92%;
+    padding: 30rpx 4%;
+    background: #ffffff;
+}
+.top-green-font{
+    overflow: hidden;
+    font-weight:bold;
+    font-size:30rpx;
+    color: rgba(0, 0, 0, 1);
+}
+.common-img-line-div-warp{
+    width: 100%;
+    padding: 30rpx 0;
+    overflow: hidden;
+}
+.common-line-img-div{
+    position: relative;
+    width: 140rpx;
+    height: 140rpx;
+    float: left;
+    margin:0 35rpx 30rpx 0;
+    border-radius: 5rpx ;
+}
+.common-line-img-div:nth-child(4n){
+    margin: 0 0 30rpx 0;
+}
+.common-line-img-div .bg-img{
+    width: 100%;
+    height: 100%;
+}
+.delete-img{
+    position: absolute;
+    right: -15rpx;
+    top: -15rpx;
+    width: 35rpx;
+    height: 35rpx;
+    cursor: pointer;
+}
+.fixed-btn-wrap {
+    position: fixed;
+    z-index: 1111;
+    bottom: 0;
+    width: 100%;
+}
+.fixed-btn {
+    width: 92%;
+    margin: 20rpx auto;
+    height: 72rpx;
+    border-radius: 9rpx;
+    background: rgba(55, 153, 73, 1);
+    text-align: center;
+    line-height: 72rpx;
+    font-size:30rpx;
+    font-family:PingFang-SC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}

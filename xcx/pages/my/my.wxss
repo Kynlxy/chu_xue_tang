@@ -1,0 +1,161 @@
+/* pages/my/my.wxss */
+page{
+    background-color: #faf5f5;
+}
+.my-info-div{
+    position: relative;
+    width: 92%;
+    padding: 32rpx 4%;
+    background: #ffffff;
+}
+.my-info-div .header-img-div{
+    position: relative;
+    margin-left: 100rpx;
+    width: calc(100% - 100rpx);
+    padding: 2rpx;
+}
+.header-img-div image{
+    position: absolute;
+    top:.55rem;
+    left:-16%;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+}
+.common-font-view{
+    padding: 25rpx 0;
+}
+.header-img-div .right{
+    font-size: 24rpx;
+    color: #379949;
+    margin-top:.1rem;
+}
+.my-money-main-warp{
+    background: #ffffff;
+    margin: 20rpx 0;
+    padding: 30rpx 0 10rpx 0;
+}
+.border-right{
+    border-right: 1px solid #333333;
+}
+.my-money-center{
+    display: flex;
+    text-align: center;
+}
+.my-money-center view:first-child{
+    margin-bottom:20rpx;
+    font-size: 34rpx;
+}
+.common-money-div{
+    flex: 1;
+}
+.bank-info-div{
+    position: relative;
+    border-radius: 25rpx;
+    width: 98%;
+    height: 280rpx;
+    margin: 30rpx auto;
+    box-shadow: 0 2px 4px 0px #0f9919;
+    color: #ffffff;
+    background: #3ea352;
+    overflow:hidden;
+}
+.bank-info-div image {
+    width: 100%;
+    height: 100%;
+    border-radius:25rpx;
+}
+.bank-info-div .absolute{
+    position: absolute;
+}
+.bank-info-div .my-money{
+    top: 55rpx;
+    left: 55rpx;
+    font-size: 26rpx;
+}
+.bank-info-div .money-show-div{
+    top: 130rpx;
+    left: 55rpx;
+    font-size: 34rpx;
+}
+.bank-info-div .btn-div{
+    bottom: 25rpx;
+    right: 40rpx;
+    width: 260rpx;
+    height: 60rpx;
+}
+.bank-info-div .com-btn{
+    padding: 10rpx 25rpx;
+    float: left;
+    border-radius: 30rpx;
+    border: 1px solid #ffffff;
+    text-align: center;
+    font-size: 26rpx;
+    cursor: pointer;
+}
+.bank-info-div .left{
+    margin-right: 15px;
+}
+.bank-info-div .right {
+    background: #ffffff;
+    color: #379949;
+}
+.my-info-list-warp{
+    border-radius: 10rpx;
+    background: #ffffff;
+    width: 92%;
+    padding: 45rpx 0;
+    margin: 25rpx auto;
+}
+.my-info-list-warp .main-info-list{
+    display: flex;
+}
+.main-info-list .common-info-list-div{
+    flex: 1;
+    text-align: center;
+}
+.common-info-list-div image{
+    width: 46rpx;
+    height: 46rpx;
+}
+.common-info-list-div view{
+    margin-top: 30rpx;
+    color: #474747;
+}
+.menu-list-warp{
+    width: 92%;
+    background: #ffffff;
+    margin: 0 auto;
+    border-radius: 10rpx;
+}
+.menu-list-warp .common-menu-list{
+    position: relative;
+    width: 92%;
+    padding: 30rpx 4%;
+}
+.tip-img {
+    position: absolute;
+    top: 30rpx;
+    left: 4%;
+    width: 35rpx;
+    height: 33rpx;
+}
+.common-menu-list .padding-div{
+    margin-left: 10%;
+}
+.common-menu-list .right-img{
+    float: right;
+    width: 18rpx;
+    height: 30rpx;
+}
+.publish-warp{
+    width: 92%;
+    padding: 25rpx 0;
+    margin: 25rpx auto;
+    color: #379949;
+    border-radius: 10rpx;
+    text-align: center;
+    background: #ffffff;
+    z-index: 11111;
+    font-size: 36rpx;
+}

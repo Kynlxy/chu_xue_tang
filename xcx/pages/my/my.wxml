@@ -1,0 +1,70 @@
+<!--pages/my/my.wxml-->
+<view class="main-warp">
+    <view class="my-info-div">
+        <view class="header-img-div">
+            <image src="{{myInfo.avatar ? myInfo.avatar  : '../../images/default-head.png'}}" alt=""></image>
+            <view class="common-font-view left">
+                {{myInfo.true_name ? myInfo.true_name : myInfo.user_name ? myInfo.user_name : "--" }}
+            </view>
+            <view class="common-font-view right">
+                ID: {{myInfo.user_id}}
+            </view>
+            <view class="clear"></view>
+        </view>
+        <view class="bank-info-div">
+            <image src="../../images/bank-bg.png"></image>
+            <text class="absolute my-money">我的余额(元)</text>
+            <text class="absolute money-show-div">{{moneyInfo.total_amount || '0.00'}}</text>
+            <view class="absolute btn-div">
+                <navigator hover-class="none" open-type="navigate" url="/pages/cashWithdrawal/cashWithdrawal">
+                    <view class="com-btn left">提现</view>
+                </navigator>
+                <navigator hover-class="none" open-type="navigate" url="/pages/recharge/recharge">
+                    <view class="com-btn right" style="float: right">充值</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="my-money-main-warp">
+        <view class="my-money-center">
+            <view class="common-money-div border-right">
+                <view>待退保证金</view>
+                <view>{{moneyInfo.noBack || '0.00'}}</view>
+            </view>
+            <view class="common-money-div">
+                <view>已退保证金</view>
+                <view>{{moneyInfo.yesBack || '0.00'}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="my-info-list-warp">
+        <view class="main-info-list">
+            <view wx:for="{{myProductArr}}" wx:key="{{myProductArr}}" class="common-info-list-div">
+                <navigator hover-class="none" open-type="navigate" url="{{item.url}}">
+                    <image src="{{item.img}}"></image>
+                    <view>{{item.text}}</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="menu-list-warp">
+        <view class="begin"></view>
+        <view wx:for="{{menuArr}}" wx:key="{{menuArr}}">
+            <navigator hover-class="none" open-type="navigate" url="{{item.url}}">
+                <view class="common-menu-list">
+                    <image class="tip-img" src="{{item.img}}" alt=""/>
+                    <view class="padding-div">
+                        {{item.text}}
+                        <image class="right-img" src="../../images/right-img.png"></image>
+                    </view>
+                </view>
+            </navigator>
+        </view>
+
+    </view>
+
+
+    <view class="publish-warp" bindtap="layout">
+        退出
+    </view>
+</view>

@@ -1,0 +1,42 @@
+page{
+    background-color: #fff;
+}
+.information-list-div{
+    position: relative;
+    padding: 35rpx 0;
+    width: 92%;
+    margin: 0 auto;
+    border-bottom: 1px solid  #ececec;
+    overflow: hidden;
+}
+.information-list-div .left-div{
+    width: 50%;
+    height: 180rpx;
+    float: left;
+}
+.left-div .main-info-div{
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 28tpx;
+    line-height: 35rpx;
+    color: #333333;
+}
+.left-div .time-font-div{
+    position: absolute;
+    bottom: 20rpx;
+    color: #999999;
+    left:0;
+}
+.information-list-div .right-div{
+    width: 250rpx;
+    height: 170rpx;
+    float: right;
+}
+.right-div image{
+    width: 100%;
+    height: 100%;
+    border-radius: 20rpx;
+}

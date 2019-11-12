@@ -1,0 +1,19 @@
+<view class="main-warp">
+    <view class="bank-card-info">
+        <view class="big-bold-font">{{bankInfo.bank_name}} {{'(' + num + ')'}}</view>
+        <view class="small-font">申请通过后两小时内到账</view>
+        <!--<image class="path-png" src="../../images/path.png"></image>-->
+    </view>
+    <view class="cash-money-div-warp">
+        <view class="big-title-font">提现金额</view>
+        <view class="input-div">
+            <view class="big-money-font">￥</view>
+            <input class="money-input"value="{{money}}" data-value="money" bindinput="valueInput" type="digit"  placeholder="请输入金额"/>
+        </view>
+        <view class="can-use-money">
+            <text class="left">可用余额{{moneyInfo.total_amount || '---'}}元</text>
+            <text class="right" bindtap="getAllMoney">全部提现</text>
+        </view>
+    </view>
+    <view class="{{click ? 'get-money can' : 'get-money ' }}" bindtap="getMoney">提现</view>
+</view>

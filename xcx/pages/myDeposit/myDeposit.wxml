@@ -1,0 +1,35 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+
+<view class="main-warp">
+    <!--<view class="main-center-div-top">-->
+        <!--<view class="promise-font">保证金</view>-->
+        <!--<view class="money-font">0</view>-->
+    <!--</view>-->
+    <view class="main-center-choose-type" wx:if="{{mainData.length > 0}}">
+        <!--<view class="choose-type-div">-->
+            <!--<view class="common-line-div">-->
+                <!--<text class="text-active">全部</text>-->
+            <!--</view>-->
+            <!--<view class="common-line-div">-->
+                <!--<text>收入</text>-->
+
+            <!--</view>-->
+            <!--<view class="common-line-div">-->
+                <!--<text>支出</text>-->
+            <!--</view>-->
+        <!--</view>-->
+
+        <view class="common-list-div" wx:key="{{mainData}}" wx:for="{{mainData}}">
+            <view class="big-bold-font">
+                {{item.note}}
+            </view>
+            <view class="time-font-div">
+                {{item.add_time}}
+            </view>
+            <view class="position-font">
+                {{item.money}}
+            </view>
+        </view>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+</view>

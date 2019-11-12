@@ -1,0 +1,24 @@
+<view class="main-warp">
+    <view class="bank-card-info" wx:if="{{hasBank}}">
+        <view class="bank-name-div">
+            <!--<image class="bank-logo" src="../../images/bank-logo.png"></image>-->
+            <view class="bank-name">{{bankInfo.bank_name}} </view>
+            <view class="absolute-right-div">
+                <view>{{bankInfo.city}}</view>
+                <view>{{bankInfo.branch}}</view>
+            </view>
+        </view>
+        <view class="bank-id-div">
+            <text>···</text>
+            <text>···</text>
+            <text>···</text>
+            <text>{{num}}</text>
+        </view>
+    </view>
+    <view class="relieve" bindtap="relieve" wx:if="{{hasBank}}">解绑</view>
+    <navigator hover-class="none" open-type="navigate" url="/pages/addBankDiv/addBankDiv" wx:if="{{!hasBank}}">
+        <view class="add-bank-div">
+            <image src="../../images/bank-card-img.png"></image>
+        </view>
+    </navigator>
+</view>

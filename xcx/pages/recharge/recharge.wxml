@@ -1,0 +1,19 @@
+<view class="main-warp">
+    <!--<view class="bank-card-info">-->
+        <!--<view class="big-bold-font">招商银行储蓄卡(2398)</view>-->
+        <!--<view class="small-font">申请通过后两小时内到账</view>-->
+        <!--<image class="path-png" src="../../images/path.png"></image>-->
+    <!--</view>-->
+    <view class="cash-money-div-warp">
+        <view class="big-title-font">充值金额</view>
+        <view class="input-div">
+            <view class="big-money-font">￥</view>
+            <input class="money-input" type="digit" placeholder="请输入金额" value="{{money}}" data-value="money" bindinput="valueInput" />
+        </view>
+        <!--<view class="can-use-money">-->
+            <!--<text class="left">该卡本次最多可充值￥20000</text>-->
+        <!--</view>-->
+    </view>
+    <view class="get-money"  bindtap="submit">充值</view>
+    <!--<view class="bottom-font-green">常见问题</view>-->
+</view>

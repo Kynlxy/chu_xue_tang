@@ -1,0 +1,50 @@
+<view class="main-warp">
+    <view class="main-top-header">
+        <view class="common-view ">
+            <text class="btn-active">
+                我参与的
+            </text>
+
+        </view>
+        <view class="common-view">
+            <text>
+                我发布的
+            </text>
+        </view>
+    </view>
+    <view class="recommended-products-warp">
+        <view class="recommended-products-line">
+            <view class="project-main-div">
+                <view class="time-view-div">
+                    交易中 距结束: 50小时50分50秒
+                </view>
+                <image src="../../images/product-banner.png" alt=""></image>
+                <view class="detail-font">
+                    诸暨市大唐镇大塘村20亩鱼塘承包权(两年),诸暨市大唐镇大塘村20亩鱼塘承包权(两年)诸暨市大唐镇大塘村20亩鱼塘承包权(两年),诸暨市大唐镇大塘村20亩鱼塘承包权(两年)
+                </view>
+            </view>
+            <view class="buy-div">
+                <view class="price-now">当前出价 <text>￥1600</text></view>
+                <view class="time-price">5次出价</view>
+                <view class="place">杭州</view>
+            </view>
+        </view>
+        <view class="recommended-products-line">
+            <view class="project-main-div">
+                <view class="time-view-div">
+                    交易中 距结束: 50小时50分50秒
+                </view>
+                <image src="../../images/product-banner.png" alt=""></image>
+                <view class="detail-font">
+                    诸暨市大唐镇大塘村20亩鱼塘承包权(两年),诸暨市大唐镇大塘村20亩鱼塘承包权(两年)诸暨市大唐镇大塘村20亩鱼塘承包权(两年),诸暨市大唐镇大塘村20亩鱼塘承包权(两年)
+                </view>
+            </view>
+            <view class="buy-div">
+                <view class="price-now">当前出价<text>￥1600</text></view>
+                <view class="time-price">5次出价</view>
+                <view class="place">杭州</view>
+            </view>
+        </view>
+    </view>
+
+</view>

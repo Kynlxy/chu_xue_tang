@@ -1,0 +1,28 @@
+/* pages/rechargeFailure/rechargeFailure.wxss */
+.top-banner-div{
+    padding-top: 160rpx;
+    text-align: center;
+}
+.face-img{
+    width: 250rpx;
+    height: 250rpx;
+
+}
+.green{
+    margin-top: 40rpx;
+    font-size: 36rpx;
+    letter-spacing: 1px;
+    color: #0f9919;
+    font-weight: bold;
+}
+.publish-warp{
+    margin: 60rpx auto 0 auto;
+    width: 92%;
+    padding: 25rpx 0;
+    border-radius: 10rpx;
+    text-align: center;
+    z-index: 11111;
+    font-size: 36rpx;
+    background: #379949;
+    color: #ffffff;
+}

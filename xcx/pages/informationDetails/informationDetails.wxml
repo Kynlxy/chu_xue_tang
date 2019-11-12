@@ -1,0 +1,15 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="main-warp">
+    <!--<view class="info-banner">-->
+        <!--<image src="../../images/product-banner.png" alt=""/>-->
+    <!--</view>-->
+    <view class="main-center-div">
+        <view class="big-font-div">
+            {{detailInfo.title}}
+        </view>
+        <view class="time-p">{{detailInfo.pub_time}}</view>
+        <view class="content-p">
+            <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+        </view>
+    </view>
+</view>

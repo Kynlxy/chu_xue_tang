@@ -1,0 +1,62 @@
+<view class="main-warp">
+    <view class="main-center-div-warp">
+        <view class="tip-font-div">
+            请按照示例图提交身份证照片，推荐手机横向拍摄证件照 片，如有模糊、太暗、遮挡、反光，则不予以认证。
+        </view>
+        <view class="common-img-div" data-index="1" bindtap="takePhoto">
+            <image src="../../images/id-true.png" wx:if="{{imgBgOne.length == 0}}"></image>
+            <image src="{{imgBgOne}}" wx:if="{{imgBgOne.length != 0}} "></image>
+
+        </view>
+        <view class="common-img-div"  data-index="2" bindtap="takePhoto">
+            <image src="../../images/id-false.png"  wx:if="{{imgBgTwo.length == 0}}"></image>
+            <image src="{{imgBgTwo}}" wx:if="{{imgBgTwo.length > 0}}"></image>
+
+        </view>
+    </view>
+    <view class="distinguish-result">
+        选择分类
+    </view>
+    <view  class="common-line-div-warp">
+        <view class="common-line-div" >
+            <view class="left-text">
+                帐号类型
+            </view>
+            <picker class="position-right-choose"
+                    value="{{typeIndex}}" data-value="typeIndex" range="{{typeArr}}" range-key="name"  bindchange="valueCommonInput">
+                {{typeArr[typeIndex].name}}
+                <image class="path-div" src="../../images/path.png"></image>
+            </picker>
+        </view>
+    </view>
+    <view class="distinguish-result" wx:if="{{typeIndex == 1}}">
+        集体
+    </view>
+    <view class="common-line-div-warp" wx:if="{{typeIndex == 1}}">
+        <view class="common-line-div ">
+            <view class="left">名称</view>
+            <input type="text" placeholder="请输入集体名称" value="{{cname}}" data-value="cname" bindinput="valueInput"/>
+        </view>
+
+    </view>
+
+    <view class="distinguish-result">
+        识别结果
+    </view>
+    <view class="common-line-div-warp">
+        <view class="common-line-div border-bottom">
+            <view class="left">姓名</view>
+            <view class="right">{{trueName}}</view>
+        </view>
+        <view class="common-line-div">
+            <view class="left">身份证号</view>
+            <view class="right">{{idCard}}</view>
+        </view>
+    </view>
+    <view class="publish-warp">
+        <view class="btn-submit" bindtap="submitInfo">
+            提交
+        </view>
+
+    </view>
+</view>

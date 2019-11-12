@@ -1,0 +1,44 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+<import src="../template/product/product.wxml"/>
+<view class="main-warp">
+    <view class="first-total-bar">
+        <view class="place-location-div">
+            <view class="input-warp-div">
+                <input type="text" placeholder="请输入要搜索的商品" value="{{goods_name}}" data-value="goods_name"
+                       bindinput="valueInput"/>
+                <image src="../../images/index-search.png"></image>
+            </view>
+            <view class="search-btn" bindtap="productSearch">搜索</view>
+        </view>
+
+    </view>
+    <view class="select-project-warp">
+        <view class="select-project">
+            <!-- 第二部分交易选择地区  -->
+            <view class="common-line-div" wx:for="{{project}}" wx:key="{{project}}">
+                <image src="{{item.img}}"></image>
+                <view class="font-div">
+                    {{item.font}}
+                </view>
+
+            </view>
+        </view>
+    </view>
+    <view class="product-div-type-warp">
+        <view class="product-div-type-line ">
+            <picker bindchange="selectValueInput" value="{{sortIndex}}" data-value="sortIndex" range="{{sortArr}}" range-key="value">
+                {{sortArr[sortIndex].value}} <image src="../../images/black-down.png"></image>
+            </picker>
+        </view>
+        <view class="product-div-type-line">
+            <picker bindchange="selectValueInput" value="{{sortTypeIndex}}" data-value="sortTypeIndex" range="{{sortTypeArr}}" range-key="value">
+                {{sortTypeArr[sortTypeIndex].value}} <image src="../../images/black-down.png"></image>
+            </picker>
+        </view>
+    </view>
+    <view class="recommended-products-warp" wx:if="{{mainData.length > 0}}">
+        <template is="product" data="{{mainData: mainData}}" wx:if="{{mainData.length > 0}}"/>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+
+</view>

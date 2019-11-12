@@ -1,0 +1,97 @@
+<view class="main-warp">
+    <view class="top-div">
+        <view class="top-center-div">
+            <view class="left-banner-img">
+                <image src="{{mainData.img_path}}" alt=""></image>
+            </view>
+            <view class="right-content-p">
+                <view class="name-p">
+                    {{mainData.goods_name}}
+                </view>
+                <view class="info-div">
+                    <view class="item-div">
+                        <view class="title-p">{{mainData.good_cate}}</view>
+                        <view class="content-p">商品性质</view>
+                    </view>
+
+                    <view class="item-div">
+                        <view class="title-p">{{mainData.area_name}}</view>
+                        <view class="content-p">商品属地</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="extraction-method-wrap">
+        <view class="extraction-method-center">
+            <view class="tip-p">
+                <image src="../../images/radio.png"></image>
+                <text>提取方式</text>
+            </view>
+            <view class="radio-wrap">
+                <view class="radio-center">
+                    <view class="item-radio" wx:for="{{items}}" wx:key="{{items}}" data-index="{{item.value}}" bindtap="radioChange">
+                        <image src="{{item.value == checkRadio ? '../../images/yes-radio.png' : '../../images/no-radio.png'}}"></image>
+                        <text>{{item.name}}</text>
+                    </view>
+
+                </view>
+            </view>
+            <view class="buy-way" wx:if="{{checkRadio == 1}}" bindtap="morePlace">
+                {{place.address || '添加收货地址'}}
+            </view>
+
+            <view class="buy-way" wx:if="{{checkRadio == 4}}">
+                {{mainData.delivery_type}}
+            </view>
+        </view>
+    </view>
+    <view class="payment-details-wrap">
+        <view class="payment-details-center">
+            <view class="tip-p">
+                <image src="../../images/radio.png"></image>
+                <text>支付明细</text>
+            </view>
+            <view class="second-p">
+                最终商品售价<text>¥ {{mainData.money}}</text>
+            </view>
+            <view class="payment-center-div">
+                <view class="payment-line-div">
+                    <view class="left">
+                        买受人已收服务费
+                    </view>
+                    <view class="right">
+                        ¥ {{mainData.accept_service}}
+                    </view>
+                </view>
+                <view class="payment-line-div">
+                    <view class="left">
+                        买受人手续费
+                    </view>
+                    <view class="right">
+                        ¥ {{mainData.service_price}}
+                    </view>
+                </view>
+                <view class="payment-line-div">
+                    <view class="left">
+                        买受人减免
+                    </view>
+                    <view class="right">
+                        ¥ {{mainData.derate_service }}
+                    </view>
+                </view>
+                <view class="payment-line-div">
+                    <view class="left">
+                        买受人优惠额
+                    </view>
+                    <view class="right">
+                        ¥ {{mainData.discount_amount }}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="button" bindtap="submit">
+        提交订单
+    </view>
+</view>

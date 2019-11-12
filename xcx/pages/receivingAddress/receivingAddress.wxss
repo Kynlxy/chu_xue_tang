@@ -1,0 +1,52 @@
+page{
+    background-color: #faf5f5;
+}
+.main-center {
+    background: #ffffff;
+}
+.common-line-div {
+    position: relative;
+    width: 92%;
+    padding: 20rpx 4% 20rpx 0;
+    margin-left: 4%;
+    border-bottom: 1px solid #faf5f5;
+}
+.name-text {
+    font-size: 30rpx;
+    color: #202020;
+}
+.mobile-text {
+    margin-left: 20rpx;
+    font-size: 24rpx ;
+    color: #333;
+}
+.address-text {
+    width:85%;
+    margin-top:20rpx;
+    font-size:24rpx;
+    color:#b7b7b7;
+
+}
+.btn-delete {
+    position: absolute;
+    top:35rpx;
+    right: 4%;
+    width: 80rpx;
+    height: 40rpx;
+    font-size: 22rpx;
+    background: #0ba20d;
+    color: #ffffff;
+    border-radius: 5rpx;
+    line-height: 40rpx;
+    text-align: center;
+}
+.add-address {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #08ac08;
+    text-align: center;
+    padding: 25rpx 0;
+    color: #ffffff;
+    font-size: 30rpx;
+}

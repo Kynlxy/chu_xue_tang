@@ -1,0 +1,9 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+<import src="../template/product/product.wxml"/>
+
+<view class="main-warp">
+    <view class="recommended-products-warp" wx:if="{{mainData.length > 0}}">
+        <template is="product" data="{{mainData: mainData}}" wx:if="{{mainData.length > 0}}"/>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+</view>

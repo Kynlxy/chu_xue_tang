@@ -1,0 +1,81 @@
+page{
+    background-color: #faf5f5;
+}
+.bank-card-info{
+    position: relative;
+    padding: 25rpx 4%;
+    background: #ffffff;
+}
+.big-bold-font{
+    font-size: 30rpx;
+    margin-bottom: 20rpx;
+}
+.small-font{
+    font-size: 24rpx;
+    color: #999999;
+}
+.path-png{
+    position: absolute;
+    right: 4%;
+    top: 42rpx;
+    width: 18rpx;
+    height: 30rpx;
+}
+.cash-money-div-warp{
+    margin-top: 25rpx;
+    padding: 35rpx 4% 10rpx 4%;
+    background: #ffffff;
+}
+.big-title-font{
+    color: #333333;
+    font-weight: bold;
+}
+.input-div{
+    position: relative;
+    width: 100%;
+    margin-top: 20rpx;
+    padding: 30rpx 0;
+    border-bottom: 1px solid #eeeeee;
+}
+.big-money-font{
+    position: absolute;
+    left: 0;
+    top:4rpx;
+    font-size: 50rpx;
+    font-weight: bold;
+}
+.money-input{
+    padding-left: 50rpx;
+    color: #585858;
+}
+.can-use-money{
+    padding: 25rpx 0;
+    color: #a9a9a9;
+    overflow: hidden;
+
+}
+.can-use-money .right {
+    color: #439ae4;
+}
+.get-money{
+    width: 92%;
+    margin: 70rpx auto 0 auto;
+    background: #94c59d;
+    color: #ffffff;
+    padding: 25rpx 0;
+    text-align: center;
+    border-radius: 20rpx;
+}
+.bottom-font-green{
+    position: fixed;
+    text-align: center;
+    bottom: 20rpx;
+    left: 0;
+    right:0;
+    margin: auto;
+    color: #0f9919;
+    font-size: 26rpx;
+}
+.can {
+    background: #0f9919;
+}

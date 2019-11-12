@@ -1,0 +1,39 @@
+page{
+    background-color: #faf5f5;
+}
+.main-center {
+    margin-top: 20rpx;
+    background: #ffffff;
+}
+.common-line-div {
+    width: 92%;
+    padding: 25rpx 4% 25rpx 0 ;
+    margin-left: 4%;
+    border-bottom: 1px solid #faf5f5;
+    overflow: hidden;
+}
+.tip-p {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    font-size: 28rpx;
+    font-weight: bolder;
+    color: black;
+}
+.common-line-div input{
+    vertical-align: middle;
+    display: inline-block;
+    width: 80%;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+.btn-div {
+    width: 92%;
+    padding: 20rpx 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 28rpx;
+    background: #07a237;
+    border-radius: 10rpx;
+    margin: 30rpx auto;
+}

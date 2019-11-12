@@ -1,0 +1,13 @@
+<view class="main-warp">
+    <view class="cash-money-div-warp">
+        <view class="big-title-font">保证金缴纳</view>
+        <view class="input-div">
+            <view class="big-money-font">￥</view>
+            <input class="money-input" type="number" value="{{goods_bond}}"  disabled/>
+        </view>
+        <view class="can-use-money">
+            <text class="left">当前可用余额￥{{myInfo.total_amount || '0.00'}} ,如有疑问可以咨询当地的管理员。 </text>
+        </view>
+    </view>
+    <view class="{{isClick ? 'get-money active-green' : 'get-money' }}" bindtap="submit">确定</view>
+</view>

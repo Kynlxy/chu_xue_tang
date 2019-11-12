@@ -1,0 +1,18 @@
+page{
+    background-color: #faf5f5;
+}
+.title-font-p{
+    font-size: 35rpx;
+    color: #333;
+}
+.title-font-p text{
+    font-size: 24rpx;
+    color: #cccccc;
+}
+
+.recommended-products-line{
+    margin-bottom: 20rpx;
+    width: 92%;
+    padding: 5rpx 4% 40rpx 4%;
+    background: #ffffff;
+}

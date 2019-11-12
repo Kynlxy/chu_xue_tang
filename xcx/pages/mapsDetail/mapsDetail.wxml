@@ -1,0 +1,21 @@
+<view class="main-warp">
+    <map id="map" longitude="{{rstLongitude}}" latitude="{{retLatitude}}" scale="16"
+         markers="{{markers}}"  circles="{{circles}}"  show-location>
+        <cover-view class="go-place-div" >
+            <cover-view class="no-bg-div"></cover-view>
+            <cover-view class="bg-div">
+                <cover-view class="big-tip-p">拍品所在地</cover-view>
+                <cover-view class="small-p">{{detail}}</cover-view>
+            </cover-view>
+            <cover-view class="img-div" bindtap="goPlace">到这去</cover-view>
+        </cover-view>
+    </map>
+    <!--<view class="tips-font" wx:if="{{detail !=0 }}">-->
+        <!--<image src="../../images/place-choose.png" /> 商品所在地:    {{detail}}-->
+        <!--<view class="goPlace" bindtap="goPlace"><image src="../../images/store_range.png" />导航前往</view>-->
+
+    <!--</view>-->
+    <!--<view class="tips-font" wx:if="{{detail == 0}}">暂无获取到地址</view>-->
+
+
+</view>

@@ -1,0 +1,279 @@
+<view  class="{{ isShow ? 'main-warp body-fixed' : 'main-warp'}} ">
+    <view  wx:if="{{!isShow}}">
+        <view class="common-input-div-warp bottom-input">
+            <view class="common-input-div ">
+                <view class="left-text">
+                    商品名称
+                    <text class="red-text">*</text>
+                </view>
+                <input type="text" class="right" placeholder="请填写商品名称"  value="{{goods_name}}" data-value="goods_name" bindinput="valueInput"/>
+            </view>
+
+            <view class="common-input-div">
+                <view class="left-text">
+                    所在地
+                    <text class="red-text">*</text>
+                </view>
+                <view class="position-right-choose" bindtap="translate">{{place}}
+                    <image class="path-div" src="../../images/path.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="take-photo-div-warp">
+            <view class="top-green-font">
+                <text class="left">拍照照片</text>
+                <text class="right">{{interim.length  || 0 }}/5</text>
+            </view>
+            <view class="common-img-line-div-warp">
+                <view class="common-line-img-div" wx:for="{{interim}}" wx:key="{{interim}}"  wx:for-index="index">
+                    <image class="bg-img" src="{{item}}" alt=""/>
+                    <image class="delete-img" src="../../images/deleteImg.png" alt="" data-index="{{index}}" bindtap="deleteImg"/>
+                </view>
+                <view class="common-line-img-div" bindtap="takePhoto">
+                    <image class="bg-img" src="../../images/addImg.png" alt=""/>
+                </view>
+            </view>
+        </view>
+        <view class="common-input-div-warp bottom-input">
+            <view class="common-input-div">
+                <view class="left-text">
+                    起买价(元)
+                    <text class="red-text">*</text>
+                </view>
+                <input type="digit" class="right" placeholder="请填写起拍价" maxlength="11" value="{{goods_price}}"
+                       data-value="goods_price" bindinput="valueInput"/>
+            </view>
+            <view class="common-input-div">
+                <view class="left-text">
+                    服务费（按最终成交价计算）
+                </view>
+                <view class="right">
+                    自动计算
+                </view>
+            </view>
+            <view class="view-div" wx:if="{{ruleArr.length > 0}}">
+                <view class="view-p-div red-p">
+                    温馨提示：服务费金额，具体以最终价格按下述服务费计算规则计算为准
+                </view>
+                <view class="view-p-div">
+                    服务费计算规则：
+                </view>
+                <view class="view-p-div" wx:for="{{ruleArr}}" wx:key="{{ruleArr}}" wx:for-index='index'>
+                    <view wx:if="{{index != ruleArr.length - 1}}">{{item.min}}  -  {{item.max}} \t\t\t\t {{item.lv}}%</view>
+                    <view wx:if="{{index == ruleArr.length - 1}}">{{item.min}} 以上 \t\t\t\t\t {{item.lv}}%</view>
+
+
+                </view>
+            </view>
+        </view>
+
+        <view class="common-input-div-warp bottom-input">
+            <view class="common-input-div">
+                <view class="left-text">
+                    提货方式
+                    <text class="red-text">*</text>
+                </view>
+            </view>
+            <view class="common-input-div no-border" bindtap="chooseYD">
+                <view class="left-text">
+                    邮递
+                </view>
+                <image class="right r-img" src="{{yd ? '../../images/yes-radio.png' : '../../images/no-radio.png'}}" alt=""/>
+            </view>
+            <view class="common-input-div no-border" bindtap="chooseZT">
+                <view class="left-text">
+                    自提
+                </view>
+                <image class="right r-img"  src="{{zt ? '../../images/yes-radio.png' : '../../images/no-radio.png'}}" alt=""/>
+
+            </view>
+            <view class="common-input-div no-border" >
+                <view class="left-text" bindtap="chooseQT">
+                    其他
+                </view>
+                <input class="another" wx:if="{{qt}}" type="text" placeholder="请输入其他,如选择其他须要填写此项" value="{{qtMsg}}" data-value="qtMsg"  bindinput="valueInput"/>
+                <image class="right r-img"  src="{{qt ? '../../images/yes-radio.png' : '../../images/no-radio.png'}}" alt="" bindtap="chooseQT"/>
+
+            </view>
+        </view>
+        <view class="common-input-div-warp bottom-input">
+
+
+            <view class="common-input-div">
+                <view class="left-text">
+                    商品类型
+                    <text class="red-text">*</text>
+                </view>
+
+                <picker class="right "
+                        bindchange="valueWarpInput"
+                        value="{{cateIndex}}" data-value="cateIndex" range="{{cateArr}}" range-key="cate_name">
+                    {{cateArr[cateIndex].cate_name}}
+                </picker>
+            </view>
+
+
+            <view class="common-input-div">
+                <view class="left-text">
+                    开始时间
+                    <text class="red-text">*</text>
+                </view>
+
+                <picker class="right" bindchange="bindDateChange"
+                        value="{{hourIndex1}}"
+                        data-index="3"
+                        data-value="hourIndex1"
+                        range-key="name"
+                        range="{{hourArr}}">
+                    {{hourArr[hourIndex1].name}}
+                </picker>
+
+
+                <picker class="right date-right"
+                        mode="date"
+                        value="{{start_time}}"
+                        start="{{start_time}}"
+                        end="2025-12-01"
+                        bindchange="bindDateChange"
+                        data-index="1"
+                >
+                    {{start_time}}
+                </picker>
+            </view>
+
+            <view class="common-input-div">
+                <view class="left-text">
+                    结束时间
+                    <text class="red-text">*</text>
+                </view>
+
+                <picker class="right" bindchange="bindDateChange"
+                        value="{{hourIndex2}}"
+                        data-index="4"
+                        data-value="hourIndex2"
+                        range-key="name"
+                        range="{{hourArr}}">
+                    {{hourArr[hourIndex2].name}}
+                </picker>
+
+
+
+                <picker class="right date-right"
+                        mode="date"
+                        value="{{end_time}}"
+                        start="{{start_time}}"
+                        end="2025-12-01"
+                        bindchange="bindDateChange"
+                        data-index="2"
+                >
+                    {{end_time }}
+                </picker>
+            </view>
+            <view class="common-input-div">
+                <view class="left-text">
+                    保证金(元)
+                    <text class="red-text">*</text>
+                </view>
+                <input type="digit" class="right" placeholder="保证金"  value="{{goods_bond}}" data-value="goods_bond" bindinput="valueInput" disabled/>
+            </view>
+            <view class="common-input-div">
+                <view class="left-text">
+                    加价幅度(元)
+                    <text class="red-text">*</text>
+                </view>
+                <input type="digit" class="right" placeholder="请填写每次加价幅度" value="{{goods_add}}" data-value="goods_add" bindinput="valueInput"/>
+            </view>
+
+            <view class="cate-warp-div">
+                <view class="cate-center-div" wx:for="{{cateArr[cateIndex].cate_spec}}" wx:key="{{cateArr[cateIndex].cate_spec}}"  wx:for-index="sIndex" >
+                    <view class="common-input-div" style="font-weight: bold">
+                        {{item.key}}
+                    </view>
+                    <!--   新商品的value  -->
+                    <view class="common-input-div" >
+                        <view class="left-text">
+                            规格
+                        </view>
+                        <input wx:if="{{item.val == 0}}" type="text" class="right" placeholder="请输入{{item.key}}的规格" bindinput="valueInputInsert"
+                               data-index="{{sIndex}}"
+                               data-type="val"
+                               data-keys="{{item.key}}"
+                               maxlength="7"
+                               value="{{cateObj[sIndex].val}}"
+                        />
+
+                        <picker wx:if="{{item.val.length > 0}}" class="position-right-choose" bindchange="valueCommonInput"
+                                data-index="{{sIndex}}"
+                                data-type="valIndex"
+                                data-keys="{{item.key}}"
+                                range="{{item.val}}" >
+                            {{item['val'][cateObj[sIndex].valIndex ]}}
+                            <image class="path-div" src="../../images/path.png"></image>
+                        </picker>
+                    </view>
+
+                    <!--   新商品的key  -->
+                    <view class="common-input-div" wx:if="{{item.unit.length > 0}}">
+                        <view class="left-text">
+                            单位 / 类型
+                        </view>
+                        <!--<input wx:if="{{item.unit.length == 0}}" type="text" class="right" placeholder="请填写单位" bindinput="valueInputInsert"-->
+                        <!--data-index="{{sIndex}}"-->
+                        <!--data-type="unit"-->
+                        <!--data-keys="{{item.key}}"-->
+                        <!--value="{{cateObj[sIndex].unit}}"-->
+                        <!--/>-->
+
+                        <picker wx:if="{{item.unit.length > 0}}" class="position-right-choose" bindchange="valueCommonInput"
+                                data-index="{{sIndex}}"
+                                data-type="unitIndex"
+                                data-keys="{{item.key}}"
+                                range="{{item.unit}}" >
+                            {{item['unit'][cateObj[sIndex].unitIndex ]}}
+                            <image class="path-div" src="../../images/path.png"></image>
+                        </picker>
+                    </view>
+
+
+                </view>
+
+            </view>
+        </view>
+
+        <view class="text-area-warp" hidden="{{isShow}}">
+            <textarea class="main-text-area" placeholder="备注信息（选填），提供详情的商品资料可提高过审概率。"  value="{{goods_content}}" data-value="goods_content" bindinput="valueInput" ></textarea>
+        </view>
+        <view class="fixed-last-div">
+            <view class="button-div" bindtap="submit">提交审核</view>
+        </view>
+    </view>
+    <!--地区选择的模态框-->
+    <view class="map-warp-model-div" animation="{{animation}}" wx:if="{{isShow}}">
+        <view class="search-input-div">
+            <input type="text" placeholder="请输入市镇快速检索" value="{{placeData}}" data-value="placeData" bindinput="valueInput" />
+            <view class="city-search-btn" bindtap="citySearch">搜索</view>
+        </view>
+        <map id="map" longitude="{{rstLongitude}}" latitude="{{retLatitude}}" scale="16"
+             markers="{{markers}}" bindmarkertap="markertap" circles="{{circles}}" polyline="{{polyline}}"
+             bindtap="returnPlace" bindcontroltap="returnDetail" show-location>
+            <cover-view class="main-cover-warp" hidden="{{hidden}}">
+                <cover-view class="main-center-div">
+                    <cover-view class="main-show"> {{'确定选择: ' + place}}</cover-view>
+                    <cover-view class="last-btn-div">
+                        <cover-view class="common-btn" bindtap="cancel">
+                            取消
+                        </cover-view>
+                        <cover-view class="common-btn ok-btn" bindtap="confirm">
+                            确定
+                        </cover-view>
+                    </cover-view>
+                </cover-view>
+            </cover-view>
+        </map>
+        <view class="btn-get-place" bindtap="selectPlace">选取地点</view>
+        <view class="tips-font">地区: {{place}}</view>
+        <view class="tips-font red" >提示:滑动地图,点击地图会选取地图中间位置。</view>
+    </view>
+
+
+</view>

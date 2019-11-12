@@ -1,0 +1,163 @@
+/**
+ * API开放接口定义
+ * author:stepday
+ * date:2019-01-17
+ */
+const express = require('express');
+var session = require('express-session');
+const app = express();
+
+var {
+	sessionStore
+} = require('./connect.js');
+
+//引入接口文件
+const {
+	User
+} = require('./api/app/user.js');
+
+//引入接口文件
+const {
+	AboutClass
+} = require('./api/app/class.js');
+
+const { AdminClass } = require ('./api/admin/class.js');
+
+const { AdminStudent } = require ('./api/admin/student.js');
+
+const { AdminTeacher } = require ('./api/admin/teacher.js');
+
+//引入接口文件
+const Pic = require('./api/app/pic.js');
+
+//引入token工具
+var JwtUtil = require('./utils/jwt.js');
+
+
+//解析表单的插件
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
+
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+//检测token的有效性
+app.use(function (req, res, next) {
+    //除去数组内的一些url不检测token外，其他的多有请求都需要进行token校验
+	let noNeedCheckUrl = [		
+		"/api/user/login",//登录
+		"/api/pic/getImg",//获取图片
+		"/api/pic/uploadImg"//上传图片
+
+	];
+	
+	//url 去掉参数 如果是get模式的话
+	let _url = req.url.split('?')[0];
+    if (!noNeedCheckUrl.includes(_url)) {
+        let token = req.headers.token; //获取headers内的token
+        let jwt = new JwtUtil(token);
+        let result = jwt.verifyToken();
+        // 如果考验通过就next，否则就返回登陆信息不正确
+        if (result == 'err') {
+            res.send({code: 403, message: '登录已过期,请重新登录',path:_url});
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
+
+//用户登录
+app.post('/api/user/login', (req, res) => {
+	User.login(req, res);
+});
+
+//获取banner
+app.get('/api/class/getBanner', (req, res) => {
+	AboutClass.getBanner(req, res);
+});
+//获取某个用户的课程
+app.get('/api/class/getClass', (req, res) => {
+	AboutClass.getClass(req, res);
+});
+//获取具体某个课程的详情
+app.get('/api/class/getClassDetail', (req, res) => {
+	AboutClass.addWatchTimes(req,res, AboutClass.getClassDetail);
+});
+//获取具体某个授课老师的详情信息
+app.get('/api/class/getClassTeacherDetail', (req, res) => {
+	AboutClass.getClassTeacherDetail(req, res);
+});
+//上传
+app.post('/api/pic/uploadImg', Pic.upload.single('file') ,(req, res,next) => {
+    let _path = req.file.path;
+    Pic.insertPic(_path, res);
+});
+//获取图片
+app.get('/api/pic/getImg', (req,res) => {
+    Pic.getImg(req, res);
+});
+
+/**
+ * admin接口开始
+ */
+
+//获取课程列表
+app.get('/api/admin/class/getAllClass' , (req, res) => {
+	AdminClass.getAllClass(req, res);
+});
+//获取所有学生列表
+app.get('/api/admin/student/getAllStudent', (req, res) => {
+	AdminStudent.getAllStudent(req, res);
+});
+//新增一个学生
+app.get('/api/admin/student/addStudent', (req, res) => {
+	AdminStudent.addStudent(req, res);
+});
+//获取所有教师列表
+app.get('/api/admin/teacher/getAllTeacher', (req, res) => {
+	AdminTeacher.getAllTeacher(req, res);
+});
+
+
+// 对Date的扩展，将 Date 转化为指定格式的String
+// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
+// 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
+// 例子： 
+// (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
+// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
+Date.prototype.Format = function(fmt) { //author: meizz 
+	var o = {
+		"M+": this.getMonth() + 1, //月份 
+		"d+": this.getDate(), //日 
+		"h+": this.getHours(), //小时
+		"H+": this.getHours(), //小时 
+		"m+": this.getMinutes(), //分 
+		"s+": this.getSeconds(), //秒 
+		"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+		"S": this.getMilliseconds() //毫秒 
+	};
+	if (/(y+)/.test(fmt))
+		fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+		if (new RegExp("(" + k + ")").test(fmt))
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	return fmt;
+};
+//监听端口服务
+app.listen(3080, () => {
+	
+});
+
+//监听全局异常情况 不中断服务
+process.on('uncaughtException', function(err) {
+	console.log('Caught exception: ' + err);	
+});

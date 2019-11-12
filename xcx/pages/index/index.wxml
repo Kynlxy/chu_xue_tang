@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<import src="../template/swiper/swiperTemplate.wxml"/>
+<import src="../template/noInfo/noInfo.wxml"/>
+<import src="../template/product/product.wxml"/>
+
+
+<view class="main-warp index-div">
+    <view class="first-total-bar">
+        <view class="place-location-div">
+            <image class="bg-img" src="../../images/green-bg.png"></image>
+            <navigator hover-class="none" open-type="navigate" url="/pages/listSearchPage/listSearchPage">
+                <view class="input-warp-div">
+                    <input type="text" placeholder="请输入要搜索的课程" disabled/>
+                    <image src="../../images/index-search.png"></image>
+                </view>
+            </navigator>
+        </view>
+
+    </view>
+    <view class="true-city">
+        <template is="swiperBar" data="{{imgUrls: bannerList }}" wx:if="{{bannerList.length > 0}}"/>
+        <!--<view class="select-project-warp" wx:if="{{project.length > 0}}">-->
+            <!--<view class="select-project">-->
+                <!--&lt;!&ndash; 第二部分交易选择地区  &ndash;&gt;-->
+                <!--<view class="common-line-div" wx:for="{{project}}" wx:key="{{project}}">-->
+                    <!--<navigator hover-class="none" open-type="navigate" url="{{item.url}}">-->
+                        <!--<image src="{{item.cate_icon_path}}"></image>-->
+                        <!--<view class="font-div">-->
+                            <!--{{item.cate_name}}-->
+                        <!--</view>-->
+                    <!--</navigator>-->
+                <!--</view>-->
+            <!--</view>-->
+        <!--</view>-->
+        <view class="recommended-products-warp">
+            <view class="title-font-p">
+                推荐课程·
+                <text>POPULAR RECOMMENDATION</text>
+            </view>
+            <view class="product-warp">
+                <template is="product" data="{{mainData: mainData}}" wx:if="{{mainData.length > 0}}"/>
+            </view>
+
+            <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+
+        </view>
+    </view>
+</view>
+

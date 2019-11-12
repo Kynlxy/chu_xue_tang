@@ -1,0 +1,65 @@
+page{
+    background-color: #faf5f5;
+}
+.city-div-title{
+    width: 92%;
+    padding: 0 4% 20rpx 4%;
+    background: #ffffff;
+}
+.city-div-title .tips-font{
+    color: #999999;
+    font-size: 28rpx;
+}
+.city-div-title .detail-font-div{
+    font-size: 30rpx;
+    position: relative;
+    padding-left: 5%;
+    margin-top: 20rpx;
+}
+.city-div-title .detail-font-div image{
+    position: absolute;
+    left: 0;
+    top: 2rpx;
+    width: 25rpx;
+    height: 25rpx;
+}
+.city-choose-center-div{
+    width: 100%;
+    margin-top: 40rpx;
+    padding: 40rpx 0;
+    background: #ffffff;
+}
+.city-choose-center-div .tips-big-font{
+    padding: 0 4%;
+    font-size: 36rpx;
+    color: black;
+}
+.place-choose-line{
+    display: flex;
+    flex-wrap:wrap;
+    width: 92%;
+    padding: 0 4% ;
+    margin-top: 40rpx;
+    border-bottom: 1px solid #e5e7eb;
+}
+.place-common-line-div{
+    display: flex;
+    flex:  0 0 25%;
+    padding: 10px 0;
+
+}
+.detail-city-choose-warp{
+    width: 92%;
+   padding: 0 4%;
+}
+.detail-city-choose-warp .green-active{
+    color: #4da15b;
+}
+.detail-common-line-div{
+    margin: 45rpx 0;
+    font-size: 32rpx;
+}
+.green-active image {
+    width: 30rpx;
+    height: 20rpx;
+}

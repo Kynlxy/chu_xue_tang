@@ -1,0 +1,62 @@
+<import src="../template/swiper/swiperTemplate.wxml"/>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view wx:if="{{!animationMark}}" class="{{!divWarpDiv && !bondModel ? 'main-warp' : 'main-warp over-follow-hide'}}">
+    <view class="product-banner-div">
+        <template is="swiperBar" data="{{imgUrls: imgUrls}}"/>
+    </view>
+    <view class="group-div">
+        <view class="group-div-center">
+            <view class="title-font-p">
+                {{classInfo.class_name || "暂无"}}
+            </view>
+            <view class="group-detail-div">
+                <view class="group-common-detail">
+                    游览
+                    <text class="black">{{classInfo.watch_times || "0"}}</text>
+                    次
+                </view>
+                <view class="group-common-detail">
+                    学习人数
+                    <text class="black">{{classInfo.total || "0"}}</text>
+                    人
+                </view>
+                <view class="group-common-detail">
+                    起拍价
+                    <text class="black">{{classInfo.goods_price || "--"}}</text>
+                    元
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="goods-info-div-warp">
+        <view class="agent">
+            <view class="agent-tip-p">授课老师</view>
+            <view class="common-agent-list">
+                <view class="left">
+                    <image src="../../images/head.png" alt=""/>{{teacherInfo.teacher_name}}
+                </view>
+                <view class="right">
+                    <image data-phone="{{teacherInfo.mobile}}" src="../../images/phone.png" alt="" bindtap="callPhone" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="info-introduce">
+        <view class="big-font-div">
+            课程介绍
+        </view>
+        <view class="main-center-font-div">
+            {{classInfo.class_introduce}}
+        </view>
+    </view>
+
+    <view class="info-introduce">
+        <view class="big-font-div">
+            课程公告
+        </view>
+        <view class="main-center-font-div">
+            <template is="wxParse" data="{{wxParseData:goods_notice.nodes}}"/>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,242 @@
+/**app.wxss**/
+@import "pages/template/bottom/template.wxss";
+page{
+  font-size: 30rpx;
+}
+view , text{
+  font-size: 30rpx;
+}
+.main-warp{
+  padding-bottom: 50rpx;
+}
+input::-webkit-input-placeholder{
+  color: #e3d9e0;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color: #e3d9e0;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color: #e3d9e0;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+  color: #e3d9e0;
+}
+.no-color{
+  background: none;
+  border: none;
+  color: #fff
+}
+.border-none{
+  border: 0;
+}
+.button-reset{
+  border-radius: 0;
+  border:none;
+}
+.submit{
+  z-index: 1;
+}
+.margin-none{
+  margin: 0 !important;
+}
+.left{
+  float: left;
+}
+.right {
+  float: right;
+}
+.bg-div{
+  width: 100%;
+  height: 20rpx;
+  background: #f6f6f6;
+}
+text,view,image{
+  margin: 0;
+  padding: 0;
+}
+.no-info-warp{
+  padding-top: 100rpx;
+}
+.noInfo-no-info-div{
+  position: relative;
+  width:100%;
+  height:370rpx;
+}
+.noInfo-absolute-font{
+  position: absolute;
+  top:400rpx;
+  left: 50%;
+  width: 200rpx;
+  text-align: center;
+  margin-left: -100rpx;
+}
+.noInfo-no-info-div image{
+  width: 100%;
+  height: 100%;
+}
+.banner-div{
+  position: relative;
+  width: 100%;
+  height: 350rpx;
+}
+.banner-div .font-num-div{
+  position: absolute;
+  right:4%;
+  bottom:12rpx;
+  font-size:26rpx;
+  color:#ffffff;
+  padding:12rpx 18rpx;
+  background:rgba(0, 0, 0, 0.4);
+  border-radius:28rpx;
+}
+.banner-div swiper{
+  position: relative;
+  width: 100%;
+  height: 350rpx;
+}
+.banner-div image{
+  width: 100%;
+  height: 100%;
+}
+.absolute{
+  position: absolute;
+}
+.buy-div view {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.project-main-div .time-view-div {
+  position:absolute;
+  padding:20rpx 40rpx 20rpx 20rpx;
+  top:20rpx;
+  background:rgba(8, 172, 8, 0.6);
+  font-size:30rpx;
+  color:#ffffff;
+  border-radius:0 30rpx 30rpx 0;
+}
+
+ .examine{
+  background: rgba(9, 92, 136, 0.6) !important;
+}
+ .end{
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+ .danger{
+  background: rgba(255, 0, 8,0.85) !important;
+}
+
+.common-line-product-div{
+  margin-top: 20rpx;
+}
+.recommended-products-warp .project-main-div{
+  position: relative;
+  width: 100%;
+  height: 360rpx;
+  margin-top: 30rpx;
+}
+.project-main-div image{
+  width: 100%;
+  height: 100%;
+}
+.project-main-div .time-view-div{
+  position: absolute;
+  padding: 17rpx 40rpx 17rpx 20rpx;
+  top: 20rpx;
+  background: rgba(8, 172, 8, 0.6);
+  font-size: 28rpx;
+  color: #ffffff;
+  border-radius:0 50rpx 50rpx 0;
+}
+.project-main-div .detail-font{
+  width: 92%;
+  padding: 0 4%;
+  position: absolute;
+  bottom: 20rpx;
+  font-size: 30rpx;
+  color: #fff !important;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.recommended-products-warp .buy-div{
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 2px);
+  padding:25rpx 0 0 0;
+  border-top: none;
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 50rpx;
+}
+
+.price-now text{
+  font-size:34rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(55,153,73,1);
+}
+.buy-div  .time-price{
+  flex:  1;
+  border-right: 1px solid #cccccc;
+}
+.buy-div .place {
+  flex: 1;
+}
+.buy-div .price-now{
+  flex: 1;
+  color: #379949;
+}
+.buy-div .classify {
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(136,143,156,1);
+  font-size:22rpx;
+  line-height:25rpx;
+}
+.last-buy-div {
+  width: 100%;
+  padding: 21rpx 0;
+  text-align: center;
+  background:rgba(235,248,237,1);
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(55,153,73,1);
+  margin-top: 35rpx;
+}
+.last-buy-detail {
+  width: 100%;
+  padding: 21rpx 0;
+  text-align: center;
+  background: #f3f5f6;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #333;
+  margin-top: 35rpx;
+}
+.no-border{
+  border: 0 !important;
+}
+.look-detail-font{
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+.text-right {
+  text-align: left !important;
+}
+.padding-left {
+  padding-left: 42rpx;
+}
+.big-one-font {
+  font-size: 30rpx !important;
+}
+.clear {
+  clear: both;
+}
+

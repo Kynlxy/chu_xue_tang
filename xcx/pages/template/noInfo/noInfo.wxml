@@ -1,0 +1,8 @@
+<template name="noInfo">
+    <view class="no-info-warp">
+        <view class="noInfo-no-info-div">
+            <image src="../../images/no-info2.png"></image>
+        </view>
+    </view>
+
+</template>

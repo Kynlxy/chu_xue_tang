@@ -1,0 +1,60 @@
+<view class="main-warp">
+    <view class="name-p">
+        {{address.name}}<text>{{address.address}}</text><text>{{now}}</text>
+    </view>
+    <view class="goods-div">
+        {{mainData.goods_name}}
+    </view>
+    <view class="money-p">
+        <view class="left">
+            总价
+        </view>
+        <view class="right">
+            合计 {{mainData.deal_price}}元
+        </view>
+    </view>
+    <view class="payment-type-wrap">
+        <view class="payment-type">
+            <view class="tip-p">
+                支付方式 · Payment
+            </view>
+            <view class="common-line-div" bindtap="chooseWx">
+                <view class="left-img">
+                    <image src="../../images/weixin.png"></image>
+                </view>
+                <view class="right-img">
+                    <view class="name-view" >
+                        微信
+                    </view>
+                    <view class="explain-view">
+                        线上支付&支付方便快捷
+                    </view>
+                    <image class="payment-img" src="{{chooseType == 2 ? '../../images/payment-ok.png' : '../../images/payment-no.png'}}"></image>
+                </view>
+            </view>
+            <view class="common-line-div" bindtap="chooseDown">
+                <view class="left-img">
+                    <image src="../../images/xianxia.png"></image>
+                </view>
+                <view class="right-img">
+                    <view class="name-view">
+                        线下支付
+                    </view>
+                    <view class="explain-view">
+                        需上传转账凭证
+                    </view>
+                    <image class="payment-img" src="{{chooseType == 1 ? '../../images/payment-ok.png' : '../../images/payment-no.png'}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fixed-btn">
+        <view class="right right-btn" bindtap="payFnc">
+            支付
+        </view>
+        <view class="right-font">
+            合计:{{mainData.deal_price}}元
+        </view>
+
+    </view>
+</view>

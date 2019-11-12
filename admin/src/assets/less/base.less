@@ -1,0 +1,147 @@
+*{margin:0;padding:0}
+li{list-style:none}
+img{vertical-align:top;border:none}
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+  margin: 0;
+  padding: 0;
+}
+/* 设置默认字体 */
+body,
+button, input, select, textarea { /* for ie */
+  font-family: "Microsoft YaHei";
+}
+body {
+  min-width: 1280px;
+  width: 100%;
+  height: 100%;
+  background: #f6f6f6;
+  font-family: "Microsoft YaHei";
+}
+
+input , select,button{
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+input,select{
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+}
+select {
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+}
+select::-ms-expand { display: none; }
+
+a{
+  text-decoration: none;
+  color: #333;
+}
+input{
+  outline: none;
+}
+input::-webkit-input-placeholder{
+  color: rgba(153, 153, 153, 1);
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color: rgba(153, 153, 153, 1);
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color: rgba(153, 153, 153, 1);
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+  color: rgba(153, 153, 153, 1);
+}
+.no-color{
+  background: none;
+  border: none;
+  color: #fff
+}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+.margin-none{
+  margin: 0 !important;
+}
+.left{
+  float: left;
+}
+.right {
+  float: right;
+}
+.no-border {
+  border: 0 !important;
+}
+.clear {
+  clear: both;
+}
+.animateImg {
+  transform:rotate(180deg);
+  -ms-transform:rotate(180deg); 	/* IE 9 */
+  -moz-transform:rotate(180deg); 	/* Firefox */
+  -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+  -o-transform:rotate(180deg);
+
+}
+input,textarea{-webkit-appearance: none;appearance: none;}
+.no-scroll-body{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+#top-div {
+  min-width: 1200px;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  z-index: 1111;
+  background: #fff;
+
+}
+
+#sidebar {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  z-index: 1112;
+  .el-menu {
+    border: none;
+  }
+  li:hover {
+    background-color: #283445 !important;
+  }
+  .el-submenu__title:hover {
+    background-color: #283445 !important;
+  }
+  .el-menu-item:focus, .el-menu-item:hover {
+    background-color: #283445 !important;
+  }
+  .el-submenu .el-menu-item {
+    min-width: 199px;
+  }
+  .last-btn {
+    left: 5px;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+  }
+}
+.pagination-container {
+  text-align: right;
+}
+
+
+
+
+
+

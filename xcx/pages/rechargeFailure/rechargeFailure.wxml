@@ -1,0 +1,9 @@
+<view class="main-warp">
+    <view class="top-banner-div">
+        <image class="face-img" src="../../images/failure-png.png"></image>
+        <view class="green">充值失败!</view>
+    </view>
+    <view class="publish-warp">
+        重新充值
+    </view>
+</view>

@@ -1,0 +1,25 @@
+<view class="main-warp">
+    <view class="top-banner-div">
+        <image class="yun-img" src="../../images/yun.png" alt=""/>
+    </view>
+    <view class="center-div">
+        <view class="p-name">初学堂</view>
+        <view class="common-line-div">
+            <image class="mobile" src="../../images/login-mobile.png"></image>
+            <view class="input-warp-div mobile-input">
+                <input type="number" maxlength="11" placeholder="请输入您的手机号码" value="{{mobile}}" data-value="mobile"
+                       bindinput="valueInput"/>
+            </view>
+        </view>
+        <view class="common-line-div">
+            <image class="safe" src="../../images/login-safe.png"></image>
+            <view class="input-warp-div safe-input">
+                <input type="password" placeholder="请输入密码" value="{{pwd}}" data-value="pwd" bindinput="valueInput"/>
+
+            </view>
+        </view>
+    </view>
+    <view class="login-btn" bindtap="login">登录</view>
+    <view class="tip-font">注：未注册过的手机将自动保存为初学堂用户</view>
+
+</view>

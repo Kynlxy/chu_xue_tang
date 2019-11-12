@@ -1,0 +1,153 @@
+page{
+    background-color: #faf5f5;
+}
+
+.detail-list-div{
+    position: relative;
+    padding: 40rpx 0;
+    width: 100%;
+    height: 470rpx;
+    background: #ffffff;
+}
+.img-warp-div{
+    position: absolute;
+    left: 65rpx;
+    top: 50rpx;
+    width: 50rpx;
+    height: 460rpx;
+
+}
+.circular{
+    position: absolute;
+    width: 22rpx;
+    height: 22rpx;
+    border-radius: 50%;
+}
+.line{
+    position: absolute;
+    left: 10rpx;
+    width: 4rpx;
+    height: 130rpx;
+}
+.line-one{
+    top:22rpx;
+}
+.circular-two{
+    top: 146rpx;
+}
+.line-two{
+    top: 168rpx;
+}
+.circular-three{
+    top:296rpx;
+}
+.line-three{
+    top: 312rpx;
+}
+.circular-four{
+    top: 430rpx;
+}
+.absolute-font{
+    position: absolute;
+    width: 250rpx;
+    left: 120rpx;
+}
+.font-one{
+    top: 0;
+}
+.font-two{
+    top: 145rpx;
+}
+.font-three{
+    top: 290rpx;
+}
+.font-four{
+    top: 420rpx;
+}
+.active-green{
+    color: #379949;
+}
+.detail-div{
+    padding: 40rpx 4% 10rpx 4%;
+    background: #ffffff;
+    margin-top: 20rpx;
+}
+.line-div{
+    overflow: hidden;
+    margin-bottom: 30rpx;
+}
+.publish-warp{
+    width: 92%;
+    padding: 25rpx 0;
+    margin: 130rpx auto 0 auto;
+    background: #379949;
+    border-radius: 10rpx;
+    text-align: center;
+    color: #ffffff;
+    z-index: 11111;
+    font-size: 36rpx;
+}
+.bank-list-div-warp{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1111;
+}
+.bank-list-main-center{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 940rpx;
+    background: #ffffff;
+}
+.top-close-div{
+    font-size: 34rpx;
+    font-weight: bold;
+    width: 92%;
+    padding: 35rpx 4%;
+    text-align: center;
+}
+.close-div{
+    float: left;
+    width: 32rpx;
+    height: 32rpx;
+}
+.tip-font{
+    padding: 10rpx 4%;
+    background: #dddddd;
+    font-size: 28rpx;
+    color: #9e9e9e;
+}
+.common-bank-item{
+    position: relative;
+    width: 78%;
+    padding: 30rpx 4% 30rpx 14%;
+    margin-left: 4%;
+    border-bottom: 1px solid #e6e6e6;
+}
+.blue-ok{
+    position: absolute;
+    right: 4%;
+    top: 50rpx;
+    width: 35rpx;
+    height: 35rpx;
+}
+.big-font-div{
+    font-size: 36rpx;
+    color: #333333;
+}
+.small-detail-font{
+    margin-top: 15rpx;
+    color: #cccccc;
+    font-size: 28rpx;
+}
+.left-bank-img{
+    position: absolute;
+    left: 0;
+    top:30rpx;
+    width: 78rpx;
+    height: 78rpx;
+}

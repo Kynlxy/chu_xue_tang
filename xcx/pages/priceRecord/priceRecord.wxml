@@ -1,0 +1,28 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+
+<view class="main-warp">
+    <view wx:if = "{{mainData.length > 0}}">
+        <view class="main-title-warp">
+            <view class="item-title-div">出价用户</view>
+            <view class="item-title-div">金额</view>
+            <view class="item-title-div">时间</view>
+        </view>
+        <view class="common-item-detail" wx:for="{{mainData}}" wx:key="{{mainData}}">
+            <view class="common-item-detail-div" style="text-align: left;margin-left: 15rpx" >
+                <text wx:if="{{index == 0}}" >领先</text>
+                <text wx:if="{{index != 0}}">淘汰</text>
+                {{item.true_name}}
+            </view>
+
+            <view class="common-item-detail-div">
+                {{item.deal_price}}
+            </view>
+            <view class="common-item-detail-div">
+                {{item.add_time}}
+            </view>
+        </view>
+
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+
+</view>

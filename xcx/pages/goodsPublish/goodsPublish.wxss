@@ -1,0 +1,83 @@
+page{
+    background-color: #faf5f5;
+}
+.main-warp{
+    padding-bottom:120rpx !important;
+}
+.recommended-products-warp{
+    margin-top: 20rpx;
+}
+.title-font-p{
+    font-size: 35rpx;
+    color: #333;
+}
+.title-font-p text{
+    font-size: 24rpx;
+    color: #cccccc;
+}
+.recommended-products-warp .project-main-div{
+    position: relative;
+    width: 100%;
+    height: 360rpx;
+    margin-top: 30rpx;
+}
+.project-main-div image{
+    width: 100%;
+    height: 100%;
+}
+.project-main-div .time-view-div{
+    position: absolute;
+    padding: 20rpx 40rpx 20rpx 20rpx;
+    top: 20rpx;
+    background: rgba(8, 172, 8, 0.6);
+    font-size: 30rpx;
+    color: #ffffff;
+    border-radius:0 30rpx 30rpx 0;
+}
+.project-main-div .examine{
+    background: rgba(9, 92, 136, 0.6);
+}
+.project-main-div .end{
+    background: rgba(0, 0, 0, 0.4);
+}
+.project-main-div .danger{
+    background: rgba(255, 0, 8,0.45);
+}
+.project-main-div .detail-font{
+    width: 92%;
+    padding: 0 4%;
+    position: absolute;
+    bottom: 20rpx;
+    font-size: 30rpx;
+    color: #ffffff;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.recommended-products-line{
+    margin-top: 20rpx;
+    width: 92%;
+    padding: 5rpx 4% 40rpx 4%;
+    background: #ffffff;
+}
+.recommended-products-line:first-child{
+    margin-top: 0;
+}
+.publish-warp{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10rpx;
+    width: 92%;
+    padding: 25rpx 0;
+    margin:  auto;
+    background: #379949;
+    border-radius: 10rpx;
+    text-align: center;
+    color: #ffffff;
+    z-index:1000;
+    font-size: 36rpx;
+}

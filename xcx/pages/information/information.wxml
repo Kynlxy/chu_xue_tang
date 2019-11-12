@@ -1,0 +1,24 @@
+<import src="../template/noInfo/noInfo.wxml"/>
+
+<view class="main-warp">
+    <view class="information-list-warp" wx:if="{{mainData.length > 0}}">
+        <view wx:for="{{mainData}}" wx:key="{{mainData}}" >
+            <navigator hover-class="none" open-type="navigate" url="/pages/informationDetails/informationDetails?nid={{item.nid}}">
+                <view class="information-list-div">
+                    <view class="left-div">
+                        <view class="main-info-div">
+                            {{item.title}}
+                        </view>
+                        <view class="time-font-div">
+                            {{item.pub_time}}
+                        </view>
+                    </view>
+                    <view class="right-div">
+                        <image src="{{item.img_path}}"></image>
+                    </view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <template is="noInfo" wx:if="{{mainData.length == 0}}"/>
+</view>
