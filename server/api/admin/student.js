@@ -37,7 +37,7 @@ var AdminStudent = {
         _ajax.then(([results , req , res]) => {
             var _totalSql = 'select count(100) AS total FROM `sys_user` WHERE type = 1 AND status = 1';
             if (_key) {
-                _totalSql +=   ` WHERE name LIKE "%${_key}%" `;
+                _totalSql +=   ` AND name LIKE "%${_key}%" `;
             }
             client.query(_totalSql, (err, result) => {
                 if (err) {
@@ -62,22 +62,39 @@ var AdminStudent = {
     addStudent(req, res) {
         var _create_time = req.query.time,
             _mobile = req.query.mobile,
-            _name = req.query.name;
-        var _sql = 'INSERT INTO `sys_user` (uid, create_time , mobile , name, type , status , pwd) select max(uid)+1, ? , ? , ? , 1 , 1 , 123456 from `sys_user`';
-        client.query(_sql, [_create_time, _mobile, _name], (err, results) => {
+            _name = req.query.name,
+            _searchSql = `SELECT * FROM sys_user WHERE mobile = ${_mobile} OR name = '${_name}' `;
+            //先检查是否有相同的账号或者用户名
+        client.query(_searchSql, (err , rst) => {
             if (err) {
                 return res.json({
                     code: 0,
                     message: err.message
                 });
             } else {
-                return res.json({
-                    code: 1,
-                    message: "添加成功"
-                });
+                if (rst && rst.length > 0) {
+                    return res.json({
+                        code: 0,
+                        message: "姓名或者手机号重复了"
+                    });
+                } else {
+                    var _sql = 'INSERT INTO `sys_user` (uid, create_time , mobile , name, type , status , pwd) select max(uid)+1, ? , ? , ? , 1 , 1 , 123456 from `sys_user`';
+                    client.query(_sql, [_create_time, _mobile, _name], (err, results) => {
+                        if (err) {
+                            return res.json({
+                                code: 0,
+                                message: err.message
+                            });
+                        } else {
+                            return res.json({
+                                code: 1,
+                                message: "添加成功"
+                            });
+                        }
+                    });
+                }
             }
         });
-
     },
 };
 

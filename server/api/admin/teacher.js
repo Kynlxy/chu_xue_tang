@@ -39,7 +39,7 @@ var AdminTeacher = {
         _ajax.then(([results , req , res]) => {
             var _totalSql = 'select count(100) AS total FROM `sys_user` WHERE type = 2 AND status = 1';
             if (_key) {
-                _totalSql +=   ` WHERE name LIKE "%${_key}%" `;
+                _totalSql +=   ` AND name LIKE "%${_key}%" `;
             }
             client.query(_totalSql, (err, result) => {
                 if (err) {
@@ -56,6 +56,47 @@ var AdminTeacher = {
                     return res.json(_obj)
                 }
             }); 
+        });
+    },
+    /**
+     * 添加教师
+     */
+    addTeacher: function (req, res) {
+        var _create_time = req.query.time,
+        _mobile = req.query.mobile,
+        _name = req.query.name ,
+        _searchSql = `SELECT * FROM sys_user WHERE mobile = ${_mobile} OR name = '${_name}' `;
+        // 判断是否有同名 或者 手机号一样的
+        client.query(_searchSql, (err , rst) => {
+            if (err) {
+                return res.json({
+                    code: 0,
+                    message: err.message
+                });
+            } else {
+                if (rst && rst.length > 0) {
+                    return res.json({
+                        code: 0,
+                        message: "姓名或者手机号重复了"
+                    });
+                } else {
+                    var _sql = 'INSERT INTO `sys_user` (uid, create_time , mobile , name, type , status , pwd) select max(uid)+1, ? , ? , ? , 2 , 1 , 123456 from `sys_user`';
+                    client.query(_sql, [_create_time, _mobile, _name], (err, results) => {
+                        if (err) {
+                            return res.json({
+                                code: 0,
+                                message: err.message
+                            });
+                        } else {
+                            return res.json({
+                                code: 1,
+                                message: "添加成功"
+                            });
+                        }
+                    });
+                }
+                
+            }
         });
     }
 };

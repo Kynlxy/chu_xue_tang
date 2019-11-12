@@ -122,6 +122,10 @@ app.get('/api/admin/student/getAllStudent', (req, res) => {
 app.get('/api/admin/student/addStudent', (req, res) => {
 	AdminStudent.addStudent(req, res);
 });
+//新增一个教师
+app.get('/api/admin/teacher/addTeacher', (req, res) => {
+	AdminTeacher.addTeacher(req, res);
+});
 //获取所有教师列表
 app.get('/api/admin/teacher/getAllTeacher', (req, res) => {
 	AdminTeacher.getAllTeacher(req, res);
