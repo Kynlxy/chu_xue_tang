@@ -44,6 +44,15 @@ export default new Router({
             active: '1-1',                   //侧边栏active状态
             navName: ['课程管理', '课程管理']   //navbar文案展示
           }
+        },{
+          path: '/index/addClass',
+          name: 'addClass',
+          component: resolve => require(["@/components/view/index/home/class_detail/add_class"], resolve),
+          meta: {
+            auth: true,                     // 这里设置，当前路由需要校验
+            active: '1-1',                   //侧边栏active状态
+            navName: ['课程管理', '添加课程']   //navbar文案展示
+          }
         }, {
           path: '/index/studentList',
           name: 'studentList',

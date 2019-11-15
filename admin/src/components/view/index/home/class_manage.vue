@@ -13,7 +13,9 @@
                 </el-form-item>
                 <el-form-item class="box-item right">
                   <el-button size="mini" type="primary" @click="search">查询</el-button>
-                  <el-button size="mini" type="primary">新增课程</el-button>
+                  <router-link to="/index/addClass">
+                    <el-button size="mini" type="primary">新增课程</el-button>
+                  </router-link>
                 </el-form-item>
               </el-form>
             </div>

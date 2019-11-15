@@ -261,7 +261,10 @@ page{
     margin-top:20rpx;
     padding:20rpx 4% 40rpx 4%;
     background:#ffffff;
-
+}
+.info-introduce video {
+    width: 100%;
+    height: 400rpx;
 }
 .info-introduce .big-font-div {
     font-size: 32rpx;

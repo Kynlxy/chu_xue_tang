@@ -12,7 +12,8 @@ Page({
         class_id: null,
         imgUrls: [],
         classInfo: {},
-        teacherInfo: {}
+        teacherInfo: {},
+        path: util._BASE_HTTP + '/api/video/play?fid=12'
     },
     onLoad(options) {
         if (options && options.class_id)

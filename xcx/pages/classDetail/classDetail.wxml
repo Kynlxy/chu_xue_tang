@@ -53,10 +53,8 @@
 
     <view class="info-introduce">
         <view class="big-font-div">
-            课程公告
+            课程内容
         </view>
-        <view class="main-center-font-div">
-            <template is="wxParse" data="{{wxParseData:goods_notice.nodes}}"/>
-        </view>
+        <video src="{{path}}" controls></video>
     </view>
 </view>

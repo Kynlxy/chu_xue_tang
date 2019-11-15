@@ -11,6 +11,16 @@
                   <el-input size="mini" class="small-input" v-model="searchData" placeholder="请输入">
                   </el-input>
                 </el-form-item>
+                <el-form-item label="学生状态:" class="box-item">
+                  <el-select size="mini" class="small-input" v-model="status" placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item class="box-item right">
                   <el-button size="mini" type="primary" @click="search">查询</el-button>
                   <el-button size="mini" type="primary" @click=" addStudentDialog = true">新增学生</el-button>
@@ -52,7 +62,14 @@
                 >
                   <template slot-scope="scope">
                     <el-button type="primary" size="mini">查看详情</el-button>
-                    <el-button type="danger" size="mini">删除</el-button>
+
+                    <el-button v-if="scope.row.status == 1" type="info" size="mini"
+                               @click="changeStudentStatus(scope.row, 2)">冻结学生
+                    </el-button>
+                    <el-button v-if="scope.row.status == 2" type="warning" size="mini"
+                               @click="changeStudentStatus(scope.row, 1)">解冻学生
+                    </el-button>
+
                   </template>
                 </el-table-column>
               </el-table>
@@ -107,6 +124,17 @@
         listQuery: {
           page: 1
         },
+        options: [{
+          value: '',
+          label: '所有学生'
+        },{
+          value: '1',
+          label: '正常学生'
+        },{
+          value: '2',
+          label: '冻结学生'
+        }],
+        status: '',
         searchData: '',
         mainData: [],
         addInfo: {
@@ -148,14 +176,37 @@
 
               }
             }, res => {
-                util.$success('添加成功!');
-                this.handleClose();
-                this.listQuery.page = 1;
-                this.getList();
+              util.$success('添加成功!');
+              this.handleClose();
+              this.listQuery.page = 1;
+              this.getList();
             });
           } else {
             return false
           }
+        });
+      },
+      /**
+       * 改变学生状态
+       */
+      changeStudentStatus(_row, _status) {
+        let _msg = +_status === 2 ? '冻结的用户将不能进行登录，是否执行冻结操作' : '是否解冻此用户'
+        this.$confirm(_msg, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          util.$ajax({
+            url: '/api/admin/student/changeStudentStatus',
+            type: 'post',
+            data: {
+              uid: _row.uid,
+              status: _status
+            }
+          }, res => {
+            util.$success('操作成功');
+            this.getList();
+          });
         });
       },
       /**
@@ -170,7 +221,8 @@
           url: '/api/admin/student/getAllStudent',
           data: {
             searchData: this.searchData,
-            page: this.listQuery.page
+            page: this.listQuery.page,
+            status: this.status
           }
         }, res => {
           if (_num && +_num === 1) {
