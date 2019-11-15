@@ -5,21 +5,17 @@
  */
 const express = require('express');
 var session = require('express-session');
+let path = require('path');
+
 const app = express();
 
-var {
-	sessionStore
-} = require('./connect.js');
+var { sessionStore } = require('./connect.js');
 
 //引入接口文件
-const {
-	User
-} = require('./api/app/user.js');
+const { User } = require('./api/app/user.js');
 
 //引入接口文件
-const {
-	AboutClass
-} = require('./api/app/class.js');
+const { AboutClass } = require('./api/app/class.js');
 
 const { AdminClass } = require ('./api/admin/class.js');
 
@@ -27,18 +23,22 @@ const { AdminStudent } = require ('./api/admin/student.js');
 
 const { AdminTeacher } = require ('./api/admin/teacher.js');
 
+const { Video } = require ('./api/video/video.js');
+
 //引入接口文件
 const Pic = require('./api/app/pic.js');
 
 //引入token工具
 var JwtUtil = require('./utils/jwt.js');
 
-
 //解析表单的插件
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
+
+app.use(express.static(path.join(__dirname)));
 
 app.use(session({
     key: 'session_cookie_name',
@@ -53,10 +53,14 @@ app.use(function (req, res, next) {
 	let noNeedCheckUrl = [		
 		"/api/user/login",//登录
 		"/api/pic/getImg",//获取图片
-		"/api/pic/uploadImg"//上传图片
+		"/api/pic/uploadImg",//上传图片
+		"/api/video/upload", //视频上传
+		"/api/video/check/file", //检查视频
+		"/api/video/check/chunk",//检查块
+		"/api/video/merge",//合并
+		"/api/video/play"//播放
 
 	];
-	
 	//url 去掉参数 如果是get模式的话
 	let _url = req.url.split('?')[0];
     if (!noNeedCheckUrl.includes(_url)) {
@@ -73,7 +77,6 @@ app.use(function (req, res, next) {
         next();
     }
 });
-
 
 //用户登录
 app.post('/api/user/login', (req, res) => {
@@ -122,15 +125,44 @@ app.get('/api/admin/student/getAllStudent', (req, res) => {
 app.get('/api/admin/student/addStudent', (req, res) => {
 	AdminStudent.addStudent(req, res);
 });
+//冻结或者解冻学生
+app.post('/api/admin/student/changeStudentStatus', (req, res) => {
+	AdminStudent.changeStudentStudent(req, res);
+});
 //新增一个教师
 app.get('/api/admin/teacher/addTeacher', (req, res) => {
 	AdminTeacher.addTeacher(req, res);
+});
+//冻结或者解冻老师
+app.post('/api/admin/teacher/changeTeacherStatus', (req , res) => {
+	AdminTeacher.changeTeacherStatus(req, res);
 });
 //获取所有教师列表
 app.get('/api/admin/teacher/getAllTeacher', (req, res) => {
 	AdminTeacher.getAllTeacher(req, res);
 });
 
+
+//视频上传
+app.all('/api/video/upload' , (req, res) => {
+	Video.videoUpload(req, res);
+});
+//视频检查
+app.all('/api/video/check/file' , (req, res) => {
+    Video.checkedFile(req, res);
+});
+//检查块
+app.all('/api/video/check/chunk' , (req, res) => {
+    Video.checkedChunk(req, res);
+});
+//视频合并
+app.all('/api/video/merge' , (req, res) => {
+    Video.fileMerge(req, res);
+});
+//视频检查
+app.all('/api/video/play' , (req, res) => {
+    Video.videoPlay(req, res);
+});
 
 // 对Date的扩展，将 Date 转化为指定格式的String
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
