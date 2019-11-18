@@ -67,7 +67,7 @@ var Video = {
                 return res.json({
                     code: 1,
                     message: '上传成功',
-                    fid: results.insertId
+                    id: results.insertId
                 });
             }
         }
@@ -176,14 +176,29 @@ async function getChunkList(filePath, folderPath, callback) {
     let result = {}
     // 如果文件(文件名, 如:node-v7.7.4.pkg)已在存在, 不用再继续上传, 真接秒传
     if (isFileExit) {
-        result = {
-            stat: 1,
-            file: {
-                isExist: true,
-                name: filePath
-            },
-            desc: 'file is exist'
-        }
+        let _sql = `SELECT * FROM file_video WHERE url = '${filePath}'`;
+        let _ajax = new Promise(resolve => {
+            client.query(_sql, (err, results) => {
+                if (err) {
+
+                } else {
+                    resolve(results[0].id)
+                }
+            });
+        });
+        _ajax.then(_rst => {
+            result = {
+                stat: 1,
+                file: {
+                    isExist: true,
+                    name: filePath,
+                    id: _rst
+                },
+                desc: 'file is exist'
+            }
+            callback(result);
+        });
+       
     } else {
         let isFolderExist = await isExist(folderPath)
         // 如果文件夹(md5值后的文件)存在, 就获取已经上传的块
@@ -196,8 +211,9 @@ async function getChunkList(filePath, folderPath, callback) {
             chunkList: fileList,
             desc: 'folder list'
         }
+        callback(result);
+
     }
-    callback(result);
 }
 
 // 文件或文件夹是否存在

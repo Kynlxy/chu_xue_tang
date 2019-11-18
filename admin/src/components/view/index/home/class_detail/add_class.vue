@@ -3,27 +3,43 @@
     <navBar></navBar>
     <el-row class="row-radius">
       <el-col :span="24">
-        <div class="grid-content bg-purple">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">点击上传按钮</div>
-              <div class="col-md-8">
-                <div class="wrap btn btn-default">
-                  <input type="file" id="file" @change="fileChange"/>
-                  <p>上传文件</p>
-                </div>
-              </div>
-            </div>
-            <div class="row" id="process2" style="display: none">
-              <div class="col-md-4">上传文件进度</div>
-              <div class="col-md-8">
-                <div class="progress">
-                  <div id="uploadProcessStyle" class="progress-bar" style="width:0%"></div>
-                  <p id="uploadProcessValue" class="value">0%</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="add-class-wrap">
+          <el-form ref="form" :model="form" label-width="150px" :rules="rules">
+            <el-form-item label="课程名称：" prop="name">
+              <el-input class="mini-common-input" size="mini" v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="授课老师：" prop="teacher_id">
+              <el-select class="mini-common-input" size="mini" v-model="form.teacher_id" placeholder="请选择授课老师">
+                <el-option
+                  v-for="item in teacherList"
+                  :key="item.name"
+                  :label="item.name"
+                  :value="item.uid">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="课程介绍：" prop="class_introduce">
+              <el-input type="textarea" v-model="form.class_introduce"></el-input>
+            </el-form-item>
+            <el-form-item label="Banner上传：" prop="fid">
+              <input type="file" id="imgFile" @change="imgUpload"/>
+              <p>{{imgFile}}</p>
+            </el-form-item>
+            <el-form-item label="视频上传：" prop="video_id">
+              <input type="file" id="file" @change="fileChange"/>
+              <p>{{uploadFile}}</p>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
+              <el-button @click="goBack" size="mini">取消</el-button>
+            </el-form-item>
+          </el-form>
+          <el-dialog
+            title="上传中..."
+            :visible.sync="uploadShowIf"
+            width="50%">
+            <el-progress :text-inside="true" :stroke-width="26" :percentage="uploadProgress"></el-progress>
+          </el-dialog>
         </div>
       </el-col>
     </el-row>
@@ -39,10 +55,74 @@
         fileSize: 0,
         file: null,
         hasUploaded: 0,
-        chunks: 0
+        chunks: 0,
+        uploadShowIf: false,
+        uploadProgress: 0,
+        uploadFile: '上传视频',
+        imgFile: '上传Banner图',
+        teacherList: [],
+        form: {
+          name: '',
+          teacher_id: '',
+          class_introduce: '',
+          video_id: null,
+          fid: null,
+        },
+        rules: {
+          name: [{
+            required: true,
+            message: '课程名称不能为空',
+            trigger: 'blur'
+          }],
+          teacher_id: [{
+            required: true,
+            message: '授课老师不能为空',
+            trigger: 'blur'
+          }],
+          class_introduce: [{
+            required: true,
+            message: '课程介绍不能为空',
+            trigger: 'blur'
+          }],
+          video_id: [{
+            required: true,
+            message: '视频不能为空',
+            trigger: 'blur'
+          }],
+          fid: [{
+            required: true,
+            message: 'banner不能为空',
+            trigger: 'blur'
+          }]
+
+        },
       }
     },
     methods: {
+      imgUpload(e) {
+        const upLoadData = e.target.files[0];
+        const _formData = new FormData();
+        let that = this;
+        _formData.append('file', upLoadData);
+        $.ajax({
+          url: '/api/pic/uploadImg',
+          data: _formData,
+          type: 'post',
+          cache: false,
+          contentType: false,
+          processData: false,
+          headers: {'token': localStorage.getItem('token')},
+          success (res) {
+            if (+res.code === 1) {
+              util.$success('上传成功!');
+              that.imgFile = upLoadData.name;
+              that.form.fid = res.fid;
+            } else {
+              util.error('上传失败!');
+            }
+          }
+        });
+      },
       fileChange(e) {
         this.file = e.target.files[0];
         this.fileSize = this.file.size;
@@ -51,20 +131,20 @@
       // 0.响应点击
       async responseChange(file) {
         // 第一步：按照 修改时间+文件名称+最后修改时间-->MD5
-        // 显示文件校验进度
-        $("#process1").slideDown(200);
+        this.uploadShowIf = true;
         // 开始校验
         let fileMd5Value = await this.md5File(file);
         // 第二步：校验文件的MD5
         let result = await this.checkFileMD5(file.name, fileMd5Value);
         // 如果文件已存在, 就秒传
         if (result.file) {
-//        alert('文件已秒传');
+          this.uploadShowIf = false;
+          util.$success('视频上传成功');
+          this.uploadFile = result.file.name.split('/')[result.file.name.split('/').length - 1];
+          this.form.video_id = result.file.id;
           return;
         }
         // let exit = false
-        // 显示文件上传进度
-        $("#process2").slideDown(200);
         // 第三步：检查并上传MD5
         await this.checkAndUploadChunk(fileMd5Value, result.chunkList);
         // 第四步: 通知服务器所有分片已上传完成
@@ -110,7 +190,7 @@
       // 2.校验文件的MD5
       checkFileMD5(fileName, fileMd5Value) {
         return new Promise((resolve, reject) => {
-          let url =  '/api/video/check/file?fileName=' + fileName + "&fileMd5Value=" + fileMd5Value;
+          let url = '/api/video/check/file?fileName=' + fileName + "&fileMd5Value=" + fileMd5Value;
           $.getJSON(url, function (data) {
             resolve(data);
           })
@@ -127,10 +207,7 @@
             let index = await this.upload(i, fileMd5Value, this.chunks);
             this.hasUploaded++;
             let radio = Math.floor((this.hasUploaded / this.chunks) * 100);
-            $("#uploadProcessStyle").css({
-              width: radio + '%'
-            });
-            $("#uploadProcessValue").html(radio + '%');
+            this.uploadProgress = radio;
           }
         }
       },
@@ -143,7 +220,6 @@
           let end = (i + 1) * this.chunkSize >= this.file.size ? this.file.size : Math.min(this.file.size, start + this.chunkSize);
           let form = new FormData();
           form.append("data", this.file.slice(start, end)) //file对象的slice方法用于切出文件的一部分
-          console.log(this.file.slice(start, end));
           form.append("total", chunks); //总片数
           form.append("index", i) //当前是第几片
           form.append("fileMd5Value", fileMd5Value);
@@ -161,17 +237,52 @@
         })
 
       },
-
       // 第四步: 通知服务器所有分片已上传完成
       notifyServer(fileMd5Value) {
+        let that = this;
         let url = '/api/video/merge?md5=' + fileMd5Value + "&fileName=" + this.file.name + "&size=" + this.file.size
         $.getJSON(url, function (data) {
-          console.log('上传成功');
+          that.uploadFile = that.file.name;
+          that.uploadShowIf = false;
+          that.form.video_id = data.id;
+          util.$success('上传成功！');
         })
-      }
+      },
+      goBack() {
+        history.go(-1);
+      },
+      /**
+       * 按钮最后提交
+       */
+      onSubmit() {
+        this.$refs['form'].validate(valid => {
+          if (valid) {
+            util.$ajax({
+              url: '/api/admin/class/addClass',
+              type: 'post',
+              data: this.form
+            }, res => {
+                util.$success('课程新增成功!');
+            });
+          } else {
+            return false
+          }
+        });
+      },
+      getTeacherList() {
+        util.$ajax({
+          url: '/api/admin/teacher/getAllTeacher',
+          data: {
+            status: 1
+          }
+        }, res => {
+          this.teacherList = res.data;
+        });
+      },
     },
 
     mounted(){
+      this.getTeacherList();
     },
     components: {
       navBar
@@ -180,9 +291,16 @@
 </script>
 
 
-
-
 <style scoped lang="less" rel="stylesheet/less" type="text/less">
+  .add-class-wrap {
+    padding: 20px;
+    background: #ffffff;
+  }
+
+  .mini-common-input {
+    width: 300px;
+  }
+
   .wrap {
     width: 100px;
     height: 40px;
@@ -198,7 +316,7 @@
     text-align: center;
   }
 
-  #file {
+  #imgFile, #file {
     position: absolute;
     left: 0;
     top: 0;

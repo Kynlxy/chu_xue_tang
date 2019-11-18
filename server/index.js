@@ -117,6 +117,10 @@ app.get('/api/pic/getImg', (req,res) => {
 app.get('/api/admin/class/getAllClass' , (req, res) => {
 	AdminClass.getAllClass(req, res);
 });
+//新增课程
+app.post('/api/admin/class/addClass', (req, res) => {
+	AdminClass.addClass(req, res);
+});
 //获取所有学生列表
 app.get('/api/admin/student/getAllStudent', (req, res) => {
 	AdminStudent.getAllStudent(req, res);
