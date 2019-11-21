@@ -128,6 +128,7 @@ var Video = {
     videoPlay(req, res) {
         var _id = req.query.fid,
             _sql = `SELECT * FROM file_video WHERE id = ${_id}`;
+            
         client.query(_sql , (err, results) => {
             if (err) {
                 return res.json({

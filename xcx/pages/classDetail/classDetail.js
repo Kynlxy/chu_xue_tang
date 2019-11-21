@@ -13,7 +13,7 @@ Page({
         imgUrls: [],
         classInfo: {},
         teacherInfo: {},
-        path: util._BASE_HTTP + '/api/video/play?fid=12'
+        path: null
     },
     onLoad(options) {
         if (options && options.class_id)
@@ -38,7 +38,8 @@ Page({
             _arr.push(util._BASE_HTTP + '/api/pic/getImg?id=' + res.data.fid);
             this.setData({
                 imgUrls: _arr,
-                classInfo: res.data
+                classInfo: res.data,
+              path: `${util._BASE_HTTP}/api/video/play?fid=${res.data.video_id}`
             });
         });
         util.$ajax({

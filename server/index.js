@@ -33,7 +33,6 @@ var JwtUtil = require('./utils/jwt.js');
 
 //解析表单的插件
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
@@ -116,6 +115,15 @@ app.get('/api/pic/getImg', (req,res) => {
 //获取课程列表
 app.get('/api/admin/class/getAllClass' , (req, res) => {
 	AdminClass.getAllClass(req, res);
+});
+//获取某个课程的学习的学生
+app.get('/api/admin/class/getClassStudent', (req, res) => {
+	AdminClass.getClassStudent(req, res);
+});
+//为某个课程新增 或者删除学生 
+// type：1代表新增   type：2代表删除
+app.get('/api/admin/class/changeClassUserRelation', (req, res) => {
+	AdminClass.changeClassUserRelation(req, res);
 });
 //新增课程
 app.post('/api/admin/class/addClass', (req, res) => {

@@ -81,8 +81,72 @@ var AdminClass = {
                 }
             });  
         });
-        
-    }
+    },
+    /**
+     * 获取这个课程的学生
+     */
+    getClassStudent(req, res) {
+        let _class_id = req.query.class_id, _page = req.query.page,
+        _sql =  `SELECT C.* FROM  sys_user AS C INNER JOIN (SELECT A.student_id FROM class_user_relation AS A WHERE  A.class_id = ${_class_id} )  AS B ON C.uid = B.student_id `
+        if (_page) {
+            _sql +=  ` limit ${(_page  - 1)* 10}  , ${_page * 10} `;
+        }
+        let _ajax = new Promise(resolve => {
+            client.query(_sql, (err, results) => {
+                if (err) {
+                    return res.json({
+                        code: 0,
+                        message: err.message
+                    });
+                } else {
+                    resolve([results, req , res]);
+                }
+            });
+        });
+        //返回条数
+        _ajax.then(([results , req , res]) => {
+            var _totalSql = `SELECT COUNT(C.id) AS total FROM  sys_user AS C INNER JOIN (SELECT A.student_id FROM class_user_relation AS A WHERE  A.class_id = ${_class_id} )  AS B ON C.uid = B.student_id  `;
+            client.query(_totalSql, (err, result) => {
+                if (err) {
+                    return res.json({
+                        code: 0,
+                        message: err.message
+                    });
+                } else {
+                    let _obj = Object.assign({
+                        code: 1,
+                        data: results,
+                        message: "获取成功"
+                    },result[0]);
+                    return res.json(_obj)
+                }
+            }); 
+        });
+    },
+    //为某个课程新增 或者删除学生 
+    // type：1代表新增   type：2代表删除
+    changeClassUserRelation(req, res) {
+        let _student_id = req.query.student_id,
+            _type = req.query.type,
+            _class_id = req.query.class_id,
+            _sql;
+        if ( + _type === 1) {
+             _sql = 'INSERT INTO  `class_user_relation` (student_id , class_id) VALUES (? , ?)';
+        }  
+        client.query(_sql , [_student_id, _class_id] ,(err, results) => {
+            if (err) {
+                    return res.json({
+                        code: 0,
+                        message: err.message
+                    });
+                } else {
+                    return res.json({
+                        code: 1,
+                        message: '操作成功！'
+                    });
+                }
+        });
+    },
 };
 
 exports.AdminClass = AdminClass;

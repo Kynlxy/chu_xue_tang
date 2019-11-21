@@ -25,7 +25,10 @@ var AdminStudent = {
         if (_status) {
             _sql += ` AND A.status = ${_status}`;
         }
-        _sql += ` GROUP BY A.id  ORDER BY A.create_time desc limit ${(_page - 1) * 10}  , ${_page * 10} `;
+        _sql += ` GROUP BY A.id  ORDER BY A.create_time desc `;
+        if (_page) {
+            _sql +=  ` limit ${(_page  - 1)* 10}  , ${_page * 10}`;
+        }
         var _ajax = new Promise(resolve => {
             client.query(_sql, (err, results) => {
                 if (err) {

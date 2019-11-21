@@ -30,8 +30,8 @@
               <p>{{uploadFile}}</p>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
               <el-button @click="goBack" size="mini">取消</el-button>
+              <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
             </el-form-item>
           </el-form>
           <el-dialog
@@ -263,6 +263,11 @@
               data: this.form
             }, res => {
                 util.$success('课程新增成功!');
+                setTimeout( () => {
+                  this.$router.push({
+                    path: '/index/classManage'
+                  });
+                });
             });
           } else {
             return false
