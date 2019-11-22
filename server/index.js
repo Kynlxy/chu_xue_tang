@@ -25,6 +25,8 @@ const { AdminTeacher } = require ('./api/admin/teacher.js');
 
 const { Video } = require ('./api/video/video.js');
 
+const { AdminBanner } = require ('./api/admin/banner.js');
+
 //引入接口文件
 const Pic = require('./api/app/pic.js');
 
@@ -82,10 +84,6 @@ app.post('/api/user/login', (req, res) => {
 	User.login(req, res);
 });
 
-//获取banner
-app.get('/api/class/getBanner', (req, res) => {
-	AboutClass.getBanner(req, res);
-});
 //获取某个用户的课程
 app.get('/api/class/getClass', (req, res) => {
 	AboutClass.getClass(req, res);
@@ -112,6 +110,27 @@ app.get('/api/pic/getImg', (req,res) => {
  * admin接口开始
  */
 
+ //获取banner
+app.get('/api/class/getBanner', (req, res) => {
+	AdminBanner.getBanner(req, res);
+});
+//上传banner
+app.get('/api/class/addBanner', (req , res) => {
+	AdminBanner.addBanner(req ,res);
+});
+//修改banner状态
+app.get('/api/class/changeBannerStatus', (req , res) => {
+	AdminBanner.changeBannerStatus(req ,res);
+});
+//删除某张banner
+app.post('/api/class/deleteBanner', (req , res) => {
+	AdminBanner.deleteBanner(req, res);
+});
+//切换banner的位置
+app.post('/api/class/changeBannerSort', (req , res) => {
+	AdminBanner.changeBannerSort(req, res);
+});
+
 //获取课程列表
 app.get('/api/admin/class/getAllClass' , (req, res) => {
 	AdminClass.getAllClass(req, res);
@@ -128,6 +147,10 @@ app.get('/api/admin/class/changeClassUserRelation', (req, res) => {
 //新增课程
 app.post('/api/admin/class/addClass', (req, res) => {
 	AdminClass.addClass(req, res);
+});
+//删除课程 
+app.post('/api/admin/class/deleteClass', (req, res) => {
+	AdminClass.deleteClass(req, res);
 });
 //获取所有学生列表
 app.get('/api/admin/student/getAllStudent', (req, res) => {

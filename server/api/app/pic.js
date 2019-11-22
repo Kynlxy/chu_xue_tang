@@ -69,7 +69,11 @@ module.exports  = {
      */
     getImg: function (req, res) {
         var _sql = 'SELECT * FROM `file_picture` WHERE id = ?',
-        _fid = req.query.id;
+            _page = req.query.page,
+            _fid = req.query.id;
+        if (_page) {
+            _sql +=  ` limit ${(_page  - 1)* 10}  , ${_page * 10}`;
+        }
         client.query(_sql , [_fid], (err, results) => {
             if (err) {
                 return res.json({

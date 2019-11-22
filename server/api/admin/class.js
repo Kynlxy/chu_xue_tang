@@ -7,7 +7,7 @@
 var {
     client
 } = require('../../connect.js');
-
+let fs = require('fs-extra');
 var formidable = require('formidable');
 
 var AdminClass = {
@@ -21,7 +21,7 @@ var AdminClass = {
             _video_id = req.body.video_id,
             _fid = req.body.fid,
             _create_time = global.FORMATTERMiNUTE(new Date()),
-            _sql = `INSERT INTO class_detail (class_id , class_name , class_introduce , create_time , video_id , fid , teacher_id)  SELECT MAX(class_id)+1, '${_name}' , '${_class_introduce}' , '${_create_time}' , ${_video_id} , ${_fid} , ${_teacher_id}  from class_detail`;
+            _sql = `INSERT INTO class_detail (class_id , class_name , class_introduce , create_time , video_id , fid , teacher_id)  SELECT IFNULL (MAX(class_id)+1 ,1 ), '${_name}' , '${_class_introduce}' , '${_create_time}' , ${_video_id} , ${_fid} , ${_teacher_id}  from class_detail`;
         client.query(_sql , (err, results) => {
             if (err) {
                 return res.json({
@@ -34,8 +34,71 @@ var AdminClass = {
                     message: '添加成功!'
                 });
             }
+        });          
+    },
+    /**
+     * 删除课程
+     */
+    deleteClass(req ,res) {
+        let _class_id = req.body.class_id,
+            _firstSql = `SELECT * FROM class_user_relation WHERE class_id = ${_class_id}`,
+            _sql = `DELETE FROM class_detail WHERE class_id = ${_class_id}`;
+        var _ajax = new Promise(resolve => {
+            client.query(_firstSql , (err, results) => {
+                if (err) {
+                    return res.json({
+                        code: 0,
+                        message: err.message
+                    });
+                } else {
+                    if (results && + results.length > 0) {
+                        return res.json({
+                            code: 0,
+                            message: '该课程还有学生在学习，无法删除'
+                        });
+                    } else {
+                        resolve();
+                    }
+                }
+            });
         });
-                
+        _ajax.then(() => {
+            let _delete_video_url ,
+                _deletSql  = `SELECT B.url FROM file_video AS B INNER JOIN  (SELECT * FROM class_detail WHERE class_id = ${_class_id}) AS A ON B.id = A.video_id` ;
+            client.query(_deletSql, (err, results) => {
+                if (err) {
+                    return res.json({
+                        code: 0,
+                        message: err.message
+                    });
+                } else {
+                    _delete_video_url = results[0].url;
+                    //删除多余的video
+                    fs.unlink(_delete_video_url , error => {
+                        if (error) {
+                            return res.json({
+                                code: 0,
+                                message: error.message
+                            });
+                        } else {
+                            client.query(_sql , (err, results) => {
+                                if (err) {
+                                    return res.json({
+                                        code: 0,
+                                        message: err.message
+                                    });
+                                } else {
+                                    return res.json({
+                                        code: 1,
+                                        message: '操作成功'
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });  
+        });
     },
     /**
      * 获取所有课程并且返回总条数
@@ -87,9 +150,9 @@ var AdminClass = {
      */
     getClassStudent(req, res) {
         let _class_id = req.query.class_id, _page = req.query.page,
-        _sql =  `SELECT C.* FROM  sys_user AS C INNER JOIN (SELECT A.student_id FROM class_user_relation AS A WHERE  A.class_id = ${_class_id} )  AS B ON C.uid = B.student_id `
+        _sql =  `SELECT C.uid, C.name, C.create_time, C.mobile FROM  sys_user AS C INNER JOIN (SELECT A.student_id FROM class_user_relation AS A WHERE  A.class_id = ${_class_id} )  AS B ON C.uid = B.student_id `
         if (_page) {
-            _sql +=  ` limit ${(_page  - 1)* 10}  , ${_page * 10} `;
+            _sql +=  ` limit ${(_page  - 1)* 5}  , ${_page * 5} `;
         }
         let _ajax = new Promise(resolve => {
             client.query(_sql, (err, results) => {
@@ -132,7 +195,9 @@ var AdminClass = {
             _sql;
         if ( + _type === 1) {
              _sql = 'INSERT INTO  `class_user_relation` (student_id , class_id) VALUES (? , ?)';
-        }  
+        } else {
+            _sql = 'DELETE FROM class_user_relation WHERE student_id = ? AND class_id = ?';
+        }
         client.query(_sql , [_student_id, _class_id] ,(err, results) => {
             if (err) {
                     return res.json({

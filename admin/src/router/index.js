@@ -71,6 +71,33 @@ export default new Router({
             active: '2-2',                   //侧边栏active状态
             navName: ['人员管理', '教师列表']   //navbar文案展示
           }
+        },{
+          path: '/index/bannerManage',
+          name: 'bannerManage',
+          component: resolve => require(["@/components/view/index/home/banner_manage"], resolve),
+          meta: {
+            auth: true,                     // 这里设置，当前路由需要校验
+            active: '3-1',                   //侧边栏active状态
+            navName: ['banner管理', 'banner设置']   //navbar文案展示
+          }
+        },{
+          path: '/index/newsList',
+          name: 'newsList',
+          component: resolve => require(["@/components/view/index/home/news_list"], resolve),
+          meta: {
+            auth: true,                     // 这里设置，当前路由需要校验
+            active: '4-1',                   //侧边栏active状态
+            navName: ['新闻相关', '新闻列表']   //navbar文案展示
+          }
+        },{
+          path: '/index/newsEditor',
+          name: 'newsEditor',
+          component: resolve => require(["@/components/view/index/home/news_editor"], resolve),
+          meta: {
+            auth: true,                     // 这里设置，当前路由需要校验
+            active: '4-1',                   //侧边栏active状态
+            navName: ['新闻相关', '新闻管理']   //navbar文案展示
+          }
         }
       ]
     }

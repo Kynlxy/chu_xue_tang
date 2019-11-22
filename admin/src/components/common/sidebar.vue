@@ -31,27 +31,26 @@
                     ]
                 },{
                     text: '人员管理',
-                    className: 'el-icon-document-copy',
+                    className: 'el-icon-s-custom',
                     index: '2',
                     children: [
-                        {text: '学生列表', url: '/index/studentList' , index: '2-1', className: 'el-icon-news'},
-                        {text: '教师列表', url: '/index/teacherList' , index: '2-2', className: 'el-icon-printer'}
+                        {text: '学生列表', url: '/index/studentList' , index: '2-1', className: 'el-icon-user'},
+                        {text: '教师列表', url: '/index/teacherList' , index: '2-2', className: 'el-icon-user-solid'}
                     ]
                 },{
-                    text: '标签同步',
-                    className: 'el-icon-share',
+                    text: 'banner管理',
+                    className: 'el-icon-camera',
                     index: '3',
                     children: [
-                        {text: '同步方案', url: '/index/synchronizationScheme' , index: '3-1' , className: 'el-icon-date'},
-                        {text: '同步任务监控', url: '/index/synchronizationPlan' , index: '3-2', className: 'el-icon-view'}
+                        {text: 'banner设置', url: '/index/bannerManage' , index: '3-1' , className: 'el-icon-picture'},
                     ]
                 },{
-                    text: '智能标签',
+                    text: '新闻相关',
                     className: 'el-icon-document',
                     index: '4',
                     children: [
-                        {text: '智能搜索', url: '/index/intelligentSearch' , index: '4-1', className: 'el-icon-zoom-in'},
-                        {text: '标签圈群', url: '/index/labelCircleGroup' , index: '4-2', className: 'el-icon-edit-outline'}
+                        {text: '新闻列表', url: '/index/newsList' , index: '4-1', className: 'el-icon-news'},
+                        {text: '新闻管理', url: '/index/newsEditor' , index: '4-2', className: 'el-icon-edit-outline'}
                     ]
                 }]
             }

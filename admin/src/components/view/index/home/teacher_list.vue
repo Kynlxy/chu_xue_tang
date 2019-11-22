@@ -179,23 +179,7 @@
        */
       changeTeacherStatus(_row, _status) {
         let _msg =  + _status === 2 ? '冻结的用户将不能进行登录，是否执行冻结操作' : '是否解冻此用户'
-        this.$confirm( _msg , '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          util.$ajax({
-            url: '/api/admin/teacher/changeTeacherStatus',
-            type: 'post',
-            data: {
-              uid: _row.uid,
-              status: _status
-            }
-          }, res => {
-            util.$success('操作成功');
-            this.getList();
-          });
-        });
+        ``
       },
       handleClose() {
         this.addInfo = {

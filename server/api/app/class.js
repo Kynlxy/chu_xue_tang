@@ -11,26 +11,6 @@ var {
 var formidable = require('formidable');
 
 var AboutClass = {
-    /*
-     * 获取banner图
-     */
-    getBanner: function (req, res) {
-        var sql = 'SELECT * FROM `class_banner` WHERE `status`=1';
-        client.query(sql, (err, results) => {
-            if (err) {
-                return res.json({
-                    code: 0,
-                    message: err.message
-                });
-            } else {
-                return res.json({
-                    code: 1,
-                    data: results,
-                    message: "获取成功"
-                });
-            }
-        });
-    },
     /**
      * 获取课程
      */
@@ -38,7 +18,7 @@ var AboutClass = {
         var _uid = req.headers.uid, _type = req.query.type, _sql, _joinData = [];
         if (_type) {
         } else {
-            _sql = 'SELECT A.* , C.name AS teacher_name FROM `class_detail` AS A  INNER JOIN `class_user_relation` AS B INNER JOIN `sys_user` AS C WHERE A.class_id = B.class_id AND C.uid = B.teacher_id AND B.student_id = ? ';
+            _sql = 'SELECT A.* , C.name AS teacher_name FROM `class_detail` AS A  INNER JOIN `class_user_relation` AS B INNER JOIN `sys_user` AS C WHERE A.class_id = B.class_id AND C.uid = A.teacher_id AND B.student_id = ? ';
             _joinData.push(_uid);
         }
         client.query(_sql, _joinData, (err, results) => {
@@ -99,7 +79,7 @@ var AboutClass = {
      */
     getClassTeacherDetail(req, res ) {
         var _classId = req.query.class_id,
-            _sql = 'SELECT  B.name AS teacher_name, B.mobile , B.create_time  FROM  `class_detail` AS A INNER JOIN `sys_user` AS B ON A.teacher_id = B.uid WHERE A.class_id = ?';
+            _sql = 'SELECT  B.name AS teacher_name, B.mobile , B.create_time  FROM  `class_detail` AS A INNER JOIN `sys_user` AS B ON   A.teacher_id = B.uid WHERE A.class_id = ?';
         client.query(_sql, _classId, (err, results) => {
             if (err) {
                 return res.json({

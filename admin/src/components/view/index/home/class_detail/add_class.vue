@@ -22,7 +22,7 @@
               <el-input type="textarea" v-model="form.class_introduce"></el-input>
             </el-form-item>
             <el-form-item label="Banner上传：" prop="fid">
-              <input type="file" id="imgFile" @change="imgUpload"/>
+              <input type="file" id="imgFile" @change="imgUpload" accept="image/*"/>
               <p>{{imgFile}}</p>
             </el-form-item>
             <el-form-item label="视频上传：" prop="video_id">

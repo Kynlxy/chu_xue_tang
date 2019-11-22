@@ -45,7 +45,10 @@ Page({
      */
     getBanner(){
         util.$ajax({
-            url: '/api/class/getBanner'
+            url: '/api/class/getBanner',
+            data: {
+                status: 1
+            }
         }, res => {
             if (res.data && res.data.length > 0) {
                 var _arr = [];

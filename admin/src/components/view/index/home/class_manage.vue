@@ -33,7 +33,7 @@
                 <el-table-column align="center" prop="address" label="操作" width="200">
                   <template slot-scope="scope">
                     <el-button type="primary" size="mini" @click="peopleManage(scope.row)">学生/教师管理</el-button>
-                    <el-button type="danger" size="mini">删除</el-button>
+                    <el-button type="danger" size="mini" @click="deleteClass(scope.row)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -64,7 +64,7 @@
               <el-table-column prop="mobile" label="学生手机号"></el-table-column>
               <el-table-column align="center" prop="address" label="操作" width="200">
                 <template slot-scope="scope">
-                  <el-button type="danger" size="mini">删除</el-button>
+                  <el-button type="danger" size="mini" @click="deleteStudent(scope.row)">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -72,7 +72,7 @@
           <!-- S 分页 -->
           <div class="pagination-container">
             <el-pagination background @current-change="studentChange" :current-page.sync="student.page"
-                           :total="student.total" layout="prev, pager, next, jumper">
+                           :total="student.total" :page-size="5" layout="prev, pager, next, jumper">
             </el-pagination>
           </div>
           <!-- E 分页 -->
@@ -219,11 +219,36 @@
           url: '/api/admin/class/getClassStudent',
           data: {
             class_id: _id,
-            page: 1
+            page: this.student.page
           }
         }, res => {
           this.studentData = res.data;
           this.student.total = res.total;
+
+        });
+      },
+      /**
+       * 删除课程
+       */
+      deleteClass(_row) {
+          const _class_id = _row.class_id;
+        this.$confirm(`是否删除 '${_row.class_name}' 此课程?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          util.$ajax({
+            url: '/api/admin/class/deleteClass',
+            type: 'post',
+            data: {
+              class_id: _class_id
+            }
+          }, res => {
+            util.$success('操作成功');
+            this.listQuery.page = 1;
+            this.getClassList();
+          });
+        }).catch(() => {
 
         });
       },
@@ -260,6 +285,31 @@
         });
       },
       /**
+       * 删除这个课程的这个学生
+       */
+      deleteStudent(_item) {
+        this.$confirm(`是否让' ${_item.name}' 同学放弃学习此课程?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          util.$ajax({
+            url: '/api/admin/class/changeClassUserRelation',
+            data: {
+              student_id: _item.uid,
+              type: 2,
+              class_id: this.clickClassId
+            }
+          }, res => {
+            util.$success('操作成功');
+            this.student.page = 1;
+            this.getStudentData(this.clickClassId);
+          });
+        }).catch(() => {
+
+        });
+      },
+      /**
        * 提交
        */
       submit() {
@@ -288,6 +338,10 @@
         this.listQuery.page = _val;
         this.getClassList();
       },
+      studentChange(_val) {
+        this.student.page = _val;
+        this.getStudentData(this.clickClassId);
+      }
     },
 
     mounted(){
