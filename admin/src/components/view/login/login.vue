@@ -10,12 +10,12 @@
         </div>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
           <el-form-item prop="mobile">
-            <span class="fa-tips"><i class="fa fa-user"></i></span>
+            <!--<span class="fa-tips"><i class="fa fa-user"></i></span>-->
             <el-input class="area" type="text" placeholder="用户名" v-model="loginForm.mobile"
                       @keyup.enter.native="submitForm"></el-input>
           </el-form-item>
           <el-form-item prop="pwd">
-            <span class="fa-tips"><i class="fa fa-lock"></i></span>
+            <!--<span class="fa-tips"><i class="fa fa-lock"></i></span>-->
             <el-input class="area" type="password" placeholder="密码" v-model="loginForm.pwd"
                       @keyup.enter.native="submitForm"></el-input>
           </el-form-item>
@@ -96,9 +96,14 @@
               type: 'post'
             }, res => {
               if (+res.code === 1) {
+                if ( + res.info.type === 1)  {
+                  util.$error('学生用户不能登录后台!');
+                  return;
+                }
                 util.$success('登录成功!');
                 localStorage.setItem('token', res.token);
-                localStorage.setItem('userInfo', res.info);
+                localStorage.setItem('userInfo', JSON.stringify(res.info));
+
                 setTimeout(() => {
                   this.$router.push({
                     path: '/index/classManage'
@@ -253,5 +258,8 @@
       background-color: #FF7C1A;
       border: 1px solid #FF7C1A;
     }
+  }
+  .el-input__inner {
+    padding: 0 30px !important;
   }
 </style>

@@ -28,3 +28,8 @@ page{
     font-size: 34rpx;
     line-height: 45rpx;
 }
+image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}

@@ -29,7 +29,7 @@ Page({
     getClassDetail() {
         const { class_id } = this.data;
         util.$ajax({
-            url: '/api/class/getClassDetail',
+            url: '/api/app/class/getClassDetail',
             data: {
                 class_id: class_id
             }
@@ -43,7 +43,7 @@ Page({
             });
         });
         util.$ajax({
-            url: '/api/class/getClassTeacherDetail',
+            url: '/api/app/class/getClassTeacherDetail',
             data: {
                 class_id: class_id
             }

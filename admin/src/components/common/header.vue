@@ -3,12 +3,12 @@
     <el-container>
       <el-header id="header" style="text-align: right; font-size: 12px">
         <span class="header-span">初学堂</span>
-        <span>用户名占位</span>
+        <span>{{userInfo.name || userInfo.mobile}}</span>
         <el-dropdown>
           <i class="el-icon-setting el-icon--right"></i>
           <el-dropdown-menu slot="dropdown">
             <div>
-              <el-dropdown-item><p>退出</p></el-dropdown-item>
+              <el-dropdown-item><p @click="layout">退出</p></el-dropdown-item>
             </div>
           </el-dropdown-menu>
         </el-dropdown>
@@ -18,9 +18,27 @@
 
 </template>
 <script type="text/ecmascript-6">
+  import {util} from '../../common/util';
   export default {
     data() {
-      return {}
+      return {
+        userInfo: ''
+      }
+    },
+    methods: {
+      layout() {
+        localStorage.setItem('token', '');
+        util.$success('退出成功!');
+        setTimeout(() => {
+          this.$router.push({
+            path: '/login'
+          });
+        }, 1000);
+      }
+    },
+    mounted() {
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
     }
   };
 </script>

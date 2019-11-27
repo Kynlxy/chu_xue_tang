@@ -33,18 +33,18 @@ Page({
   },
   getList() {
     util.$ajax({
-      url: "/index.php?act=newList&type=help",
+      url: "/api/class/getNewsList",
       data: {
         page:1,
-        limit:100
+        limit:100,
+        status: 1,
+        type: 2
       },
       loading: 2
     }, res => {
-      if (res.code == 1){
-        this.setData({
-          mainData: res.data.info
-        })
-      }
+      this.setData({
+        mainData: res.data
+      });
     });
   },
   /**

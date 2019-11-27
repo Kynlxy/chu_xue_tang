@@ -60,6 +60,27 @@ var User = {
 				}
 			}
 		});
+	},
+	/**
+	 *	获取用户的信息
+	 */
+	getUserInfo(req , res) {
+		let _uid = req.headers.uid,
+			_sql = `SELECT uid , name , mobile , create_time , mobile FROM sys_user WHERE uid = ?`;
+		client.query(_sql, [_uid] , (err , results) => {
+			if (err) {
+                return res.json({
+                    code: 0,
+                    message: err.message
+                });
+            } else {
+                return res.json({
+					message: '获取成功',
+					data: results[0],
+                    code: 1
+                });
+            }
+		});	  
 	}
 }
 

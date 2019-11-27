@@ -4,10 +4,10 @@
         <view class="header-img-div">
             <image src="{{myInfo.avatar ? myInfo.avatar  : '../../images/default-head.png'}}" alt=""></image>
             <view class="common-font-view left">
-                {{myInfo.true_name ? myInfo.true_name : myInfo.user_name ? myInfo.user_name : "--" }}
+                {{myInfo.name ? myInfo.name : myInfo.mobile ? myInfo.mobile : "--" }}
             </view>
             <view class="common-font-view right">
-                ID: {{myInfo.user_id}}
+                ID: {{myInfo.uid}}
             </view>
             <view class="clear"></view>
         </view>
@@ -28,12 +28,12 @@
     <view class="my-money-main-warp">
         <view class="my-money-center">
             <view class="common-money-div border-right">
-                <view>待退保证金</view>
-                <view>{{moneyInfo.noBack || '0.00'}}</view>
+                <view>手机号</view>
+                <view>{{myInfo.mobile || '--'}}</view>
             </view>
             <view class="common-money-div">
-                <view>已退保证金</view>
-                <view>{{moneyInfo.yesBack || '0.00'}}</view>
+                <view>加入时间</view>
+                <view>{{myInfo.create_time}}</view>
             </view>
         </view>
     </view>

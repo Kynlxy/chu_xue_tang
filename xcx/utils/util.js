@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    _BASE_HTTP: "http://127.0.0.1:3080",
+  _BASE_HTTP: "http://106.12.37.223:7777",
     //公用设置value的方法  节点上增加data-value 属性绑定他所对应的双向绑定的值. 
     setValue(e, _this, _cb){
         if (e.currentTarget && e.currentTarget.dataset) {

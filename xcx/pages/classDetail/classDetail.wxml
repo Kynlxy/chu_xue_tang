@@ -22,9 +22,8 @@
                     人
                 </view>
                 <view class="group-common-detail">
-                    起拍价
-                    <text class="black">{{classInfo.goods_price || "--"}}</text>
-                    元
+                    <text class="black">{{classInfo.is_open == 1 ? '公开视频' : '学习课程'}}
+                    </text>
                 </view>
             </view>
         </view>

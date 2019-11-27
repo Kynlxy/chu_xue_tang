@@ -15,7 +15,7 @@ var AdminTeacher = {
      * 获取所有教师  并且返回条数。
      */
     getAllTeacher(req, res) {
-        var _sql = 'SELECT A.id , A.uid, A.name , A.status, A.create_time, A.mobile  , count(b.teacher_id) AS class_total FROM `sys_user`  AS A LEFT JOIN  `class_detail`  AS B ON A.uid = B.teacher_id  WHERE A.type = 2 ',
+        var _sql = 'SELECT A.id , A.uid, A.name , A.status, A.create_time, A.mobile  , count(B.teacher_id) AS class_total FROM `sys_user`  AS A LEFT JOIN  `class_detail`  AS B ON A.uid = B.teacher_id  WHERE A.type = 2 ',
         _key = req.query.searchData,
         _status = req.query.status,
         _page = + req.query.page;

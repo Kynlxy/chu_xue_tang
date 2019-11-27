@@ -23,11 +23,11 @@ Page({
 
     },
     /**
-     * 获取课程
+     * 获取免费课程
      */
     getClassList() {
         util.$ajax({
-            url: '/api/class/getClass'
+            url: '/api/app/class/getFreeClass'
         }, res => {
             if (res.data && res.data.length > 0) {
                 res.data.map (i => {

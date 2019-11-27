@@ -78,7 +78,7 @@
           <!-- E 分页 -->
           <div slot="footer" class="dialog-footer">
             <el-button @click="peopleShowIf = false" size="mini">取 消</el-button>
-            <el-button type="primary" @click="submit" size="mini">确 定</el-button>
+            <el-button type="primary" @click="lastSubmit" size="mini">确 定</el-button>
           </div>
         </el-dialog>
         <!--课程详情结束-->
@@ -111,6 +111,7 @@
     data(){
       return {
         clickClassId: null,     //缓存点击的课程的id
+        clickClass: null ,
         addStudentDialog: false,
         studentDataArr: [],     //获取所有学生的数组
         addInfo: {
@@ -158,7 +159,12 @@
       }
     },
     methods: {
+      //打开新增学生窗口
       openAddStudentDialog() {
+        if ( + this.clickClass.is_open === 1) {
+            util.$alert('公开课不需要添加学生');
+            return;
+        }
         this.getAllStudent();
         this.addStudentDialog = true;
 
@@ -260,6 +266,7 @@
         this.peopleShowIf = true;
         //缓存这个点击的课程的id
         this.clickClassId = _row.class_id;
+        this.clickClass = _row;
         //获取这个课程学习的学生
         this.getStudentData(_row.class_id);
 
@@ -308,6 +315,9 @@
         }).catch(() => {
 
         });
+      },
+      lastSubmit() {
+          this.peopleShowIf = false;
       },
       /**
        * 提交

@@ -14,7 +14,7 @@
                 <el-form-item class="box-item right">
                   <el-button size="mini" type="primary" @click="search">查询</el-button>
                   <router-link to="/index/newsEditor">
-                    <el-button size="mini" type="primary">新增新闻</el-button>
+                    <el-button size="mini" type="primary">新增资讯</el-button>
                   </router-link>
                 </el-form-item>
               </el-form>
@@ -24,14 +24,22 @@
                 :data="mainData"
                 stripe
                 style="width: 100%;">
-                <el-table-column style="background:rgba(242,242,242,1)" align="center" prop="class_name" label="新闻名称">
+                <el-table-column style="background:rgba(242,242,242,1)" align="center" prop="title" label="资讯名称">
                 </el-table-column>
-                <el-table-column align="center" prop="date" label="新闻banner"></el-table-column>
-                <el-table-column align="center" prop="date" label="新闻详情"></el-table-column>
-                <el-table-column align="center" prop="watch_times" label="新闻浏览数"></el-table-column>
+                <el-table-column align="center" prop="mobile" label="banner展示">
+                  <template slot-scope="scope">
+
+                    <img v-if="scope.row.fid" class="banner-img" :src="'/api/pic/getImg?id=' + scope.row.fid"  >
+                    <span v-else>
+                      暂无图片
+                    </span>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" prop="watch_times" label="资讯浏览数"></el-table-column>
+                <el-table-column align="center" prop="date" label="创建时间"></el-table-column>
                 <el-table-column align="center" prop="address" label="操作" width="200">
                   <template slot-scope="scope">
-                    <el-button type="primary" size="mini" @click="changeNews(scope.row)">修改新闻</el-button>
+                    <el-button type="primary" size="mini" @click="changeNews(scope.row)">修改资讯</el-button>
                     <el-button type="danger" size="mini" @click="deleteNews(scope.row)">删除</el-button>
                   </template>
                 </el-table-column>
@@ -108,10 +116,9 @@
         this.listQuery.page = 1;
         this.getNewsList(1);
       },
-
       getNewsList(_num) {
         util.$ajax({
-          url: '/api/admin/class/getAllClass',
+          url: '/api/class/getNewsList',
           data: {
             searchData: this.searchData,
             page: this.listQuery.page
@@ -238,6 +245,10 @@
     .source-div {
       margin: 15px 0;
     }
+  }
+  .banner-img {
+    width: 100px;
+    height: 40px;
   }
 
   .pagination-container {

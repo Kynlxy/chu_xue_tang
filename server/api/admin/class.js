@@ -20,8 +20,9 @@ var AdminClass = {
             _class_introduce = req.body.class_introduce,
             _video_id = req.body.video_id,
             _fid = req.body.fid,
+            _switchBoolean = req.body.switchBoolean,
             _create_time = global.FORMATTERMiNUTE(new Date()),
-            _sql = `INSERT INTO class_detail (class_id , class_name , class_introduce , create_time , video_id , fid , teacher_id)  SELECT IFNULL (MAX(class_id)+1 ,1 ), '${_name}' , '${_class_introduce}' , '${_create_time}' , ${_video_id} , ${_fid} , ${_teacher_id}  from class_detail`;
+            _sql = `INSERT INTO class_detail (class_id , class_name , class_introduce , create_time , video_id , fid , teacher_id, is_open)  SELECT IFNULL (MAX(class_id)+1 ,1 ), '${_name}' , '${_class_introduce}' , '${_create_time}' , ${_video_id} , ${_fid} , ${_teacher_id} , ${_switchBoolean} from class_detail`;
         client.query(_sql , (err, results) => {
             if (err) {
                 return res.json({
@@ -104,7 +105,7 @@ var AdminClass = {
      * 获取所有课程并且返回总条数
      */
     getAllClass(req, res) {
-        var _sql = 'SELECT H.* , b.name AS teacher_name FROM (SELECT A.* ,  count(c.id) AS student_total FROM `class_detail` AS A LEFT JOIN `class_user_relation` AS C ON C.class_id = A.class_id  GROUP BY A.id ) AS H INNER JOIN `sys_user` AS B  ON H.teacher_id = B.uid',
+        var _sql = 'SELECT H.* , B.name AS teacher_name FROM (SELECT A.* ,  count(C.id) AS student_total FROM `class_detail` AS A LEFT JOIN `class_user_relation` AS C ON C.class_id = A.class_id  GROUP BY A.id ) AS H INNER JOIN `sys_user` AS B  ON H.teacher_id = B.uid',
         _key = req.query.searchData,
         _page = + req.query.page;
         if (_key) {

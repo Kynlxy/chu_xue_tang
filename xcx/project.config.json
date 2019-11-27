@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -67,6 +67,19 @@
 					"name": "课程详情",
 					"pathName": "pages/classDetail/classDetail",
 					"query": "class_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/information/information",
+					"pathName": "pages/information/information",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/my",
+					"pathName": "pages/my/my",
 					"scene": null
 				}
 			]

@@ -29,6 +29,13 @@
               <input type="file" id="file" @change="fileChange"/>
               <p>{{uploadFile}}</p>
             </el-form-item>
+            <el-form-item label="视频权限：" >
+              <el-switch
+                v-model="form.switchBoolean"
+                active-text="公开"
+                inactive-text="不公开">
+              </el-switch>
+            </el-form-item>
             <el-form-item>
               <el-button @click="goBack" size="mini">取消</el-button>
               <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
@@ -67,6 +74,7 @@
           class_introduce: '',
           video_id: null,
           fid: null,
+          switchBoolean: false
         },
         rules: {
           name: [{

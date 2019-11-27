@@ -141,9 +141,11 @@ var util = {
           if (+res.code === 403 && +_login === 1) {
             if (+_showError === 1) {
               this.$error('未检测到登录!');
+              setTimeout(() => {
+                location.hash = 'login'
+              },1000);
             }
           } else {
-
             if (+_showError === 2) {
               cb(res);
             } else {

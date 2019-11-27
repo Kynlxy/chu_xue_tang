@@ -27,6 +27,9 @@ const { Video } = require ('./api/video/video.js');
 
 const { AdminBanner } = require ('./api/admin/banner.js');
 
+const { AdminNews } = require ('./api/admin/news.js');
+
+
 //引入接口文件
 const Pic = require('./api/app/pic.js');
 
@@ -78,22 +81,31 @@ app.use(function (req, res, next) {
         next();
     }
 });
+/**
+ * 微信小程序开始
+ */
 
 //用户登录
 app.post('/api/user/login', (req, res) => {
 	User.login(req, res);
 });
-
+//获取某个用户的详情
+app.post('/api/app/class/getUserInfo', (req, res) => {
+	User.getUserInfo(req, res);
+});
 //获取某个用户的课程
-app.get('/api/class/getClass', (req, res) => {
+app.get('/api/app/class/getClass', (req, res) => {
 	AboutClass.getClass(req, res);
 });
+app.get('/api/app/class/getFreeClass', (req, res) => {
+	AboutClass.getFreeClass(req, res);
+});
 //获取具体某个课程的详情
-app.get('/api/class/getClassDetail', (req, res) => {
+app.get('/api/app/class/getClassDetail', (req, res) => {
 	AboutClass.addWatchTimes(req,res, AboutClass.getClassDetail);
 });
 //获取具体某个授课老师的详情信息
-app.get('/api/class/getClassTeacherDetail', (req, res) => {
+app.get('/api/app/class/getClassTeacherDetail', (req, res) => {
 	AboutClass.getClassTeacherDetail(req, res);
 });
 //上传
@@ -129,6 +141,27 @@ app.post('/api/class/deleteBanner', (req , res) => {
 //切换banner的位置
 app.post('/api/class/changeBannerSort', (req , res) => {
 	AdminBanner.changeBannerSort(req, res);
+});
+
+//新增新闻资讯
+app.post('/api/class/addNews', (req, res) => {
+	AdminNews.addNews(req, res);
+});
+//获取新闻列表
+app.get('/api/class/getNewsList', (req, res) => {
+	AdminNews.getNewsList(req, res);
+});
+//获取新闻分类
+app.get('/api/class/getAllNewsType', (req, res) => {
+	AdminNews.getAllNewsType(req, res);
+});
+//获取新闻详情
+app.get('/api/class/getNewsDetail', (req, res) => {
+	AdminNews.getNewsDetail(req, res);
+});
+//增加观看次数
+app.get('/api/class/addWatchTimes', (req, res) => {
+	AdminNews.addWatchTimes(req, res);
 });
 
 //获取课程列表

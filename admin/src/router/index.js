@@ -87,7 +87,7 @@ export default new Router({
           meta: {
             auth: true,                     // 这里设置，当前路由需要校验
             active: '4-1',                   //侧边栏active状态
-            navName: ['新闻相关', '新闻列表']   //navbar文案展示
+            navName: ['资讯相关', '资讯列表']   //navbar文案展示
           }
         },{
           path: '/index/newsEditor',
@@ -96,7 +96,16 @@ export default new Router({
           meta: {
             auth: true,                     // 这里设置，当前路由需要校验
             active: '4-1',                   //侧边栏active状态
-            navName: ['新闻相关', '新闻管理']   //navbar文案展示
+            navName: ['资讯相关', '资讯管理']   //navbar文案展示
+          }
+        },{
+          path: '/index/teacherClassManage',
+          name: 'teacherClassManage',
+          component: resolve => require(["@/components/view/index/teacher/teacher_class_manage"], resolve),
+          meta: {
+            auth: true,                     // 这里设置，当前路由需要校验
+            active: '5-1',                   //侧边栏active状态
+            navName: ['课程相关', '我的管理']   //navbar文案展示
           }
         }
       ]

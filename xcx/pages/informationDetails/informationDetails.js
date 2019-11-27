@@ -18,28 +18,40 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      nid: options.nid
+      id: options.id
     });
     this.getDetail(options);
   },
   getDetail(options){
     var that = this;
     util.$ajax({
-      url: "/?act=newSHow",
+      url: "/api/class/getNewsDetail",
       type: "get",
       data: {
-        nid: options.nid
+        id: options.id
       }
     },res => {
       if (res.code == 1){
         var article = res.data.content;
+        res.data.create_time = util.forMatterDate(res.data.create_time);
         WxParse.wxParse('content', 'html', article , that, 5);
         this.setData({
           detailInfo: res.data
+        }, ()=> {
+          this.getTime(options);
         });
       }
-
     });
+  },
+  getTime(options){
+      util.$ajax({
+          url: '/api/class/addWatchTimes',
+          data: {
+              id: options.id
+          }
+      }, res => {
+
+      });
   },
 
   /**
